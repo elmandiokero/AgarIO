@@ -22,6 +22,7 @@ export function setupDesktopInput(app) {
     if (ev.key === 'Escape') {
       if (app.chatOpen) app.closeChat();
       else if (app.isModalOpen()) app.closeModal();
+      else if (!app.inRoom && app.globalView?.isSheetOpen()) app.globalView.close();
       else if (app.inRoom) app.togglePause();
       return;
     }

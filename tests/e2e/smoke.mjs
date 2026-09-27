@@ -212,6 +212,33 @@ await step('dos jugadores se ven entre sí', async () => {
   await ctxB.close();
 });
 
+await step('chat global: del menú al juego y del juego al menú', async () => {
+  const ctxA = await browser.newContext({ viewport: { width: 1280, height: 720 } });
+  const ctxB = await browser.newContext({ viewport: { width: 1280, height: 720 } });
+  const a = await openGame(ctxA, 'chatA');
+  const b = await openGame(ctxB, 'chatB');
+  await a.fill('#name-input', 'Menuda');
+  await b.fill('#name-input', 'Jugadora');
+  await b.click('#btn-play');
+  await waitFor(b, () => window.__jaha.state.alive);
+  // A escribe desde el panel del menú
+  await waitFor(a, () => !document.querySelector('#menu-chat').hidden);
+  await a.fill('#menu-chat-input', '¡Jaha! ¿Quién juega?');
+  await a.press('#menu-chat-input', 'Enter');
+  await waitFor(b, () => [...document.querySelectorAll('#chat-log .msg.global')].some((m) => m.textContent.includes('¿Quién juega?')));
+  // B cambia al canal global con Tab y contesta
+  await b.keyboard.press('Enter');
+  await waitFor(b, () => document.activeElement?.id === 'chat-input');
+  if (!(await b.evaluate(() => window.__jaha.chatChannel === 'global'))) await b.keyboard.press('Tab');
+  await b.keyboard.type('Yo, vení');
+  await b.keyboard.press('Enter');
+  await waitFor(a, () => [...document.querySelectorAll('#menu-chat-log .m')].some((m) => m.textContent.includes('Yo, vení') && m.textContent.includes('Clásico')));
+  await a.screenshot({ path: path.join(ART, 'e2e-09-chat-global.png') });
+  await b.screenshot({ path: path.join(ART, 'e2e-10-chat-en-juego.png') });
+  await ctxA.close();
+  await ctxB.close();
+});
+
 await step('Batalla real: ronda completa con zona y podio', async () => {
   const ctx = await browser.newContext({ viewport: { width: 1280, height: 720 } });
   const page = await openGame(ctx, 'br');

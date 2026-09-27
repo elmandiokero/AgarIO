@@ -193,3 +193,46 @@ test('Batalla real por WebSocket: sala de espera y cuenta atrás', async () => {
   assert.ok(zsnap.zone.r > 0);
   await c.close();
 });
+
+test('chat global: llega al instante a todos (menú y sala), con historial y filtro', async () => {
+  const a = client();
+  const b = client();
+  await a.open();
+  await b.open();
+  a.send({ t: 'hello', v: PROTOCOL_VERSION });
+  b.send({ t: 'hello', v: PROTOCOL_VERSION });
+  const hist = await a.msg('gchat_hist');
+  assert.ok(Array.isArray(hist.msgs));
+  await b.msg('welcome');
+  // B entra a jugar, A se queda en el menú
+  b.send({ t: 'join', mode: 'ffa', name: 'Jugando', skin: '' });
+  await b.msg('joined');
+  a.send({ t: 'gchat', text: 'Mba\'éichapa a todos', name: 'DesdeMenu' });
+  const gotB = await b.wait((x) => x.msgs.find((m) => m.t === 'gchat' && m.m.text === "Mba'éichapa a todos"));
+  assert.equal(gotB.m.from, 'DesdeMenu');
+  assert.equal(gotB.m.where, 'Menú');
+  const gotA = await a.wait((x) => x.msgs.find((m) => m.t === 'gchat' && m.m.text === "Mba'éichapa a todos"));
+  assert.ok(gotA.m.id > 0);
+  // desde la sala: usa el nombre del jugador y dice dónde está
+  b.send({ t: 'gchat', text: 'hola desde el juego', name: 'Trucho' });
+  const fromGame = await a.wait((x) => x.msgs.find((m) => m.t === 'gchat' && m.m.text === 'hola desde el juego'));
+  assert.equal(fromGame.m.from, 'Jugando');
+  assert.equal(fromGame.m.where, 'Clásico');
+  // filtro
+  a.send({ t: 'gchat', text: 'sos un pelotudo', name: 'DesdeMenu' });
+  const censored = await b.wait((x) => x.msgs.find((m) => m.t === 'gchat' && m.m.from === 'DesdeMenu' && m.m.text.includes('***')));
+  assert.ok(!censored.m.text.includes('pelotudo'));
+  // anti-spam: la 4ª seguida recibe aviso privado
+  for (let i = 0; i < 5; i++) a.send({ t: 'gchat', text: `spam ${i}`, name: 'DesdeMenu' });
+  const warn = await a.wait((x) => x.msgs.find((m) => m.t === 'gchat' && m.m.sys && /Despacio/.test(m.m.text)));
+  assert.ok(warn);
+  // un nuevo conectado recibe el historial
+  const c = client();
+  await c.open();
+  c.send({ t: 'hello', v: PROTOCOL_VERSION });
+  const h2 = await c.msg('gchat_hist');
+  assert.ok(h2.msgs.some((m) => m.text === 'hola desde el juego'));
+  await a.close();
+  await b.close();
+  await c.close();
+});

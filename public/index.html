@@ -35,7 +35,8 @@
     <div id="chat">
       <div id="chat-log" aria-live="polite"></div>
       <form id="chat-form" autocomplete="off">
-        <input id="chat-input" maxlength="120" placeholder="Escribí algo… (Enter)" enterkeyhint="send">
+        <button type="button" id="chat-channel" class="chat-channel" title="Cambiar canal (Tab)">🏠 Sala</button>
+        <input id="chat-input" maxlength="120" placeholder="Mensaje a la sala… (Enter)" enterkeyhint="send">
       </form>
     </div>
     <button id="btn-chat" class="hud-btn" title="Chat" aria-label="Chat">💬</button>
@@ -97,6 +98,20 @@
         <button class="nav-btn" data-panel="invite"><span>📲</span>Invitar</button>
         <button class="nav-btn" data-panel="help"><span>❓</span>Cómo jugar</button>
       </nav>
+      <aside id="menu-chat" class="menu-chat card" aria-label="Chat global">
+        <header class="menu-chat-head">
+          <b>💬 Chat global</b>
+          <span id="online-count" class="online-count">● 0 conectados</span>
+          <button id="menu-chat-close" class="icon-btn small" aria-label="Cerrar chat">✕</button>
+        </header>
+        <div id="menu-chat-log" class="menu-chat-log" aria-live="polite"></div>
+        <form id="menu-chat-form" class="menu-chat-form" autocomplete="off">
+          <input id="menu-chat-input" maxlength="120" placeholder="Escribile a todos… (Enter)" enterkeyhint="send">
+          <button class="btn small primary" type="submit" aria-label="Enviar">➤</button>
+        </form>
+      </aside>
+      <button id="menu-chat-btn" class="menu-chat-btn" aria-label="Abrir chat global">💬<span id="menu-chat-badge" class="badge-count" hidden>0</span></button>
+
       <footer class="menu-footer">
         <span id="conn-status" class="conn-status">●</span>
         <span>Hecho con ❤️ en Paraguay · <span id="server-title">Jaha.io</span></span>

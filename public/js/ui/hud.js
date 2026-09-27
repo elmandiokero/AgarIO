@@ -23,14 +23,30 @@ export class Hud {
     this.lastScore = 0;
     this.lastCenter = '';
 
+    this.chatChannel = $('#chat-channel');
     this.chatForm.addEventListener('submit', (ev) => {
       ev.preventDefault();
       const text = this.chatInput.value.trim();
-      if (text) app.net.send({ t: 'chat', text });
+      if (text) {
+        if (app.chatChannel === 'global') app.sendGlobal(text);
+        else app.net.send({ t: 'chat', text });
+      }
       this.chatInput.value = '';
       app.closeChat();
     });
-    this.chatInput.addEventListener('blur', () => setTimeout(() => app.chatOpen && app.closeChat(), 150));
+    this.chatInput.addEventListener('keydown', (ev) => {
+      if (ev.key === 'Tab') {
+        ev.preventDefault();
+        app.toggleChatChannel();
+      }
+    });
+    // Tocar el botón de canal no debe cerrar el chat
+    this.chatChannel.addEventListener('pointerdown', (ev) => ev.preventDefault());
+    this.chatChannel.addEventListener('click', () => {
+      app.toggleChatChannel();
+      this.chatInput.focus();
+    });
+    this.chatInput.addEventListener('blur', () => setTimeout(() => app.chatOpen && document.activeElement !== this.chatInput && app.closeChat(), 150));
     $('#btn-chat').addEventListener('click', () => (app.chatOpen ? app.closeChat() : app.openChat()));
     $('#btn-pause').addEventListener('click', () => app.togglePause());
     $('#btn-spec-next').addEventListener('click', () => app.net.send({ t: 'spectate_next' }));
@@ -75,10 +91,20 @@ export class Hud {
     if (!this.fpsEl.hidden) this.fpsEl.textContent = `${this.app.renderer.fps} FPS · ${this.app.net.rtt} ms`;
   }
 
+  setChannel(ch) {
+    const g = ch === 'global';
+    this.chatChannel.textContent = g ? '🌎 Global' : '🏠 Sala';
+    this.chatChannel.classList.toggle('global', g);
+    this.chatInput.placeholder = g ? 'Mensaje para todos… (Tab cambia)' : 'Mensaje a la sala… (Tab cambia)';
+  }
+
   addChat(msg) {
-    const line = h('div', { class: `msg${msg.sys ? ' sys' : ''}${msg.admin ? ' adm' : ''}` });
-    if (msg.sys) line.textContent = msg.text;
-    else line.append(h('span', { class: 'from' }, `${msg.from}${msg.bot && this.app.settings.showBotTag ? ' 🤖' : ''}: `), msg.text);
+    const line = h('div', { class: `msg${msg.sys ? ' sys' : ''}${msg.admin ? ' adm' : ''}${msg.global ? ' global' : ''}` });
+    if (msg.sys) line.textContent = msg.global ? `🌎 ${msg.text}` : msg.text;
+    else {
+      if (msg.global) line.append(h('span', { class: 'ch' }, '🌎'));
+      line.append(h('span', { class: 'from' }, `${msg.from}${msg.bot && this.app.settings.showBotTag ? ' 🤖' : ''}: `), msg.text);
+    }
     this.chatLog.append(line);
     while (this.chatLog.children.length > 30) this.chatLog.firstChild.remove();
   }

@@ -11,6 +11,7 @@ import { Hud } from './ui/hud.js';
 import { Screens } from './ui/screens.js';
 import { Menu } from './ui/menu.js';
 import { PANELS } from './ui/panels.js';
+import { GlobalChatView } from './ui/global-chat.js';
 import { $, toast, clear } from './ui/dom.js';
 import { loadLocalSettings, saveLocalSettings, applySettingsToDom, storageGet, storageSet } from './settings-store.js';
 import { validateSettings } from '/shared/settings-schema.js';
@@ -59,12 +60,16 @@ class App {
     this.awaitingResume = false;
     this.lastFrame = performance.now();
     this.modalClose = null;
+    this.gchat = [];
+    this.chatChannel = storageGet('jaha.chatChannel', 'room') === 'global' ? 'global' : 'room';
 
     this.renderer = new Renderer($('#game'), this);
     this.minimap = new Minimap($('#minimap'), this);
     this.hud = new Hud(this);
     this.screens = new Screens(this);
     this.menu = new Menu(this);
+    this.globalView = new GlobalChatView(this);
+    this.hud.setChannel(this.chatChannel);
     setupDesktopInput(this);
     setupTouchInput(this);
     applySettingsToDom(this.settings);
@@ -144,6 +149,8 @@ class App {
         document.title = msg.title;
         $('#server-title').textContent = msg.title;
       }
+      if (typeof msg.online === 'number') this.globalView.setOnline(msg.online);
+      this.globalView.setEnabled(msg.chat !== false);
       if (msg.tokenInvalid) {
         api.setToken(null);
         this.setUser(null);
@@ -185,6 +192,21 @@ class App {
       if (this.inRoom) this.hud.updateLeaderboard(msg);
     });
     n.on('chat', (msg) => this.inRoom && this.hud.addChat(msg));
+    n.on('gchat_hist', (msg) => {
+      this.gchat = Array.isArray(msg.msgs) ? msg.msgs.slice(-100) : [];
+      this.globalView.render(this.gchat);
+    });
+    n.on('gchat', (msg) => {
+      const m = msg.m;
+      if (!m) return;
+      if (m.id) {
+        this.gchat.push(m);
+        if (this.gchat.length > 100) this.gchat.shift();
+      }
+      this.globalView.add(m);
+      if (this.inRoom) this.hud.addChat({ ...m, global: true });
+    });
+    n.on('online', (msg) => this.globalView.setOnline(msg.n));
     n.on('feed', (msg) => this.inRoom && this.hud.addFeed(msg));
     n.on('dead', (msg) => this.onDead(msg));
     n.on('saved', (msg) => {
@@ -499,6 +521,17 @@ class App {
     if (!this.inRoom || !this.settings.showChat) return;
     this.chatOpen = true;
     this.hud.openChat();
+  }
+
+  /** Enviar al chat global (desde el menú o desde el juego). */
+  sendGlobal(text) {
+    this.net.send({ t: 'gchat', text, name: this.user ? undefined : this.menu.name || undefined });
+  }
+
+  toggleChatChannel() {
+    this.chatChannel = this.chatChannel === 'global' ? 'room' : 'global';
+    storageSet('jaha.chatChannel', this.chatChannel);
+    this.hud.setChannel(this.chatChannel);
   }
 
   closeChat() {

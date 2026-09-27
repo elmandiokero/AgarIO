@@ -7,8 +7,9 @@ import { PROTOCOL_VERSION, CLIENT_MSGS } from '../../shared/constants.js';
 import { cleanName, createWordFilter } from '../../shared/sanitize.js';
 import { levelFromXp, clamp } from '../../shared/formulas.js';
 import { SKIN_MAP } from '../../shared/catalog/skins.js';
+import { GlobalChat } from './global-chat.js';
 
-const MAX_JSON = 512;
+const MAX_JSON = 1024;
 
 export function connUser(u) {
   return {
@@ -28,6 +29,23 @@ export function createWsServer({ server, config, sessions, repos, rooms, log, cl
   const conns = new Set();
   const perIp = new Map();
   const nameFilter = createWordFilter(config.chat.badWords);
+  const broadcastAll = (json) => {
+    for (const c of conns) if (c.helloed) c.sendRaw(json);
+  };
+  const globalChat = new GlobalChat({
+    config,
+    repos,
+    clock,
+    broadcast: broadcastAll,
+    onAdminCommand: (conn, cmd, args, reply) => rooms.adminCommand(conn.room, conn, cmd, args, reply),
+  });
+  rooms.announce = (text) => globalChat.announce(text);
+  let lastOnline = -1;
+  const onlineCount = () => {
+    let n = 0;
+    for (const c of conns) if (c.helloed) n++;
+    return n;
+  };
 
   function publicUser(u) {
     if (!u) return null;
@@ -75,7 +93,10 @@ export function createWsServer({ server, config, sessions, repos, rooms, log, cl
           tokenInvalid,
           rooms: rooms.summary(),
           title: config.title,
+          online: onlineCount(),
+          chat: config.chat.enabled,
         });
+        if (config.chat.enabled) conn.sendJson(globalChat.historyMessage());
         if (typeof msg.resume === 'string') {
           let ok = false;
           for (const r of Object.values(rooms.rooms)) {
@@ -145,6 +166,9 @@ export function createWsServer({ server, config, sessions, repos, rooms, log, cl
         return;
       case 'chat':
         if (conn.room && typeof msg.text === 'string') conn.room.handleChat(conn, msg.text);
+        return;
+      case 'gchat':
+        globalChat.handle(conn, msg);
         return;
       case 'ping':
         conn.sendJson({ t: 'pong', c: typeof msg.c === 'number' ? msg.c : 0, s: clock.now() });
@@ -240,7 +264,7 @@ export function createWsServer({ server, config, sessions, repos, rooms, log, cl
   }, 15_000);
   heartbeat.unref?.();
 
-  // Estado de salas para los que están en el menú
+  // Estado de salas para los que están en el menú + cantidad de conectados para todos
   const menuTicker = setInterval(() => {
     let summary = null;
     for (const c of conns) {
@@ -248,12 +272,18 @@ export function createWsServer({ server, config, sessions, repos, rooms, log, cl
       summary ??= JSON.stringify({ t: 'rooms', rooms: rooms.summary() });
       c.sendRaw(summary);
     }
+    const n = onlineCount();
+    if (n !== lastOnline) {
+      lastOnline = n;
+      broadcastAll(JSON.stringify({ t: 'online', n }));
+    }
   }, 2000);
   menuTicker.unref?.();
 
   return {
     wss,
     conns,
+    globalChat,
     close() {
       clearInterval(heartbeat);
       clearInterval(menuTicker);

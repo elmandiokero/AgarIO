@@ -11,6 +11,7 @@ export class RoomManager {
     this.rooms = {};
     this.timer = null;
     this.getConnections = getConnections;
+    this.announce = null; // lo asigna el servidor WebSocket (chat global)
     const baseSeed = seed ?? (Date.now() & 0x7fffffff);
     if (config.ffa.enabled) this.rooms.ffa = new FfaRoom({ config, rng: createRng(baseSeed), clock, progression, log });
     if (config.br.enabled) this.rooms.br = new BrRoom({ config, rng: createRng(baseSeed + 1), clock, progression, log });
@@ -70,10 +71,11 @@ export class RoomManager {
     return null;
   }
 
-  adminCommand(room, conn, cmd, args) {
-    const say = (t) => room.systemMessage(t, conn);
+  adminCommand(room, conn, cmd, args, reply = null) {
+    const say = reply || ((t) => room.systemMessage(t, conn));
     switch (cmd) {
       case 'bots': {
+        if (!room) return say('Usá /bots dentro de una sala.');
         const n = Number(args[0]);
         if (!Number.isInteger(n) || n < 0 || n > 100) return say('Uso: /bots 0-100');
         room.mcfg.bots = n;
@@ -104,7 +106,9 @@ export class RoomManager {
       }
       case 'anuncio': {
         const text = args.join(' ').slice(0, 120);
-        for (const r of Object.values(this.rooms)) r.broadcastJson({ t: 'chat', sys: true, text: `📢 ${text}` });
+        if (!text) return say('Uso: /anuncio texto');
+        if (this.announce) this.announce(`📢 ${text}`);
+        else for (const r of Object.values(this.rooms)) r.broadcastJson({ t: 'chat', sys: true, text: `📢 ${text}` });
         return undefined;
       }
       case 'perf': {

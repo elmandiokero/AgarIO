@@ -61,5 +61,5 @@ export const BR_STATE = Object.freeze({
 
 // Mensajes JSON cliente → servidor permitidos
 export const CLIENT_MSGS = Object.freeze([
-  'hello', 'auth', 'join', 'respawn', 'leave', 'spectate', 'spectate_next', 'view', 'chat', 'ping', 'rooms',
+  'hello', 'auth', 'join', 'respawn', 'leave', 'spectate', 'spectate_next', 'view', 'chat', 'gchat', 'ping', 'rooms',
 ]);
