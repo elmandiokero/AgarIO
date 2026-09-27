@@ -106,7 +106,7 @@ export class Room {
       isBot: true,
       level: this.rng.int(1, 30),
     });
-    p.brain = new BotBrain(p, pickProfile(this.rng, this.config.bots.mix), this.rng);
+    p.brain = new BotBrain(p, pickProfile(this.rng, this.config.bots.mix, this.config.bots.difficulty), this.rng);
     this.players.set(p.pid, p);
     this.bots.push(p);
     return p;

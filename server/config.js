@@ -70,8 +70,9 @@ export const DEFAULT_CONFIG = {
   },
   bots: {
     showTag: true,
+    difficulty: 'normal', // facil | normal | dificil
     softCapMass: 3000,
-    mix: { tranqui: 0.5, normal: 0.35, capo: 0.15 },
+    mix: { tranqui: 0.35, normal: 0.35, cazador: 0.15, capo: 0.15 },
     respawnMinSeconds: 2,
     respawnMaxSeconds: 5,
   },
@@ -167,6 +168,8 @@ export function sanitizeConfig(c) {
   }
   if (!Array.isArray(c.br.phases) || c.br.phases.length === 0) c.br.phases = d.br.phases;
   if (!['quick', 'named', 'token'].includes(c.tunnel.mode)) c.tunnel.mode = 'quick';
+  if (!['facil', 'normal', 'dificil'].includes(c.bots.difficulty)) c.bots.difficulty = 'normal';
+  if (!c.bots.mix || typeof c.bots.mix !== 'object') c.bots.mix = d.bots.mix;
   for (const k of ['hostname', 'name', 'id', 'credentialsFile', 'token', 'cloudflaredPath', 'protocol']) {
     if (typeof c.tunnel[k] !== 'string') c.tunnel[k] = d.tunnel[k];
   }

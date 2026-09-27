@@ -43,7 +43,8 @@
   },
   "bots": {
     "showTag": true,
-    "_comment": "Mezcla de personalidades: tranqui (fácil), normal, capo (difícil)",
-    "mix": { "tranqui": 0.5, "normal": 0.35, "capo": 0.15 }
+    "_comment": "difficulty: facil | normal | dificil. mix: proporción de personalidades: tranqui (come y huye), normal, cazador (agresivo), capo (el mejor: anticipa, se divide seguro y dispara cactus)",
+    "difficulty": "normal",
+    "mix": { "tranqui": 0.35, "normal": 0.35, "cazador": 0.15, "capo": 0.15 }
   }
 }

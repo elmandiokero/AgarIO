@@ -45,7 +45,9 @@ export class BrRoom extends Room {
   }
 
   zoneForBots() {
-    return this.state === PLAYING && this.zone ? this.zone.state : null;
+    if (this.state !== PLAYING || !this.zone) return null;
+    const z = this.zone.state;
+    return { ...z, timeLeft: this.roundStart + z.stageEndsAt - this.world.time };
   }
 
   afterStep() {
