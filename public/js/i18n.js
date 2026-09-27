@@ -4,8 +4,8 @@ export const PHRASES = {
   death: ['¡Te comieron!', '¡Upéi!', '¡Ñembotavy!', '¡Ay, che!', '¡Chake!'],
   deathZone: ['¡Te quedaste afuera!', '¡La zona te agarró!'],
   win: ['¡Ganaste! ¡Iporã!', '¡Sos el Karai Guasu!', '¡Mbarete!'],
-  ach: ['¡Iporã!', '¡Logro desbloqueado!', '¡Tuicha!'],
-  levelup: ['¡Subiste de nivel!', '¡Mbarete!'],
+  ach: ['¡Iporã! Logro:', '¡Logro desbloqueado!', '¡Oĩma! Logro:'],
+  levelup: ['¡Subiste de nivel!'],
 };
 
 export function pick(list) {

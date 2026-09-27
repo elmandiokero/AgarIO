@@ -190,9 +190,9 @@ class App {
     n.on('saved', (msg) => {
       const r = msg.result;
       if (r && !r.guest && r.rewards?.xp) toast({ icon: '💾', title: `Partida guardada: +${r.rewards.xp} XP`, sub: `+${formatGs(r.rewards.coins)}` });
-      if (r && !r.guest) this.applyResult(r);
+      if (r && !r.guest) this.applyResult(r, { notify: true });
     });
-    n.on('ach', (msg) => this.onAchievement(msg));
+    n.on('ach', (msg) => this.onAchievement(msg, true, true, true));
     n.on('br', (msg) => this.onBr(msg));
     n.on('spectating', (msg) => this.hud.showSpectate(true, msg.name));
     n.on('left', (msg) => {
@@ -386,7 +386,8 @@ class App {
     this.dead = true;
     this.net.eject(false);
     const r = msg.result;
-    if (r && !r.guest) this.applyResult(r);
+    // La pantalla de muerte / podio ya muestra nivel, logros y skins nuevas
+    if (r && !r.guest) this.applyResult(r, { notify: false });
     if (msg.mode === 'br') {
       this.lastBrResult = { place: msg.place, of: msg.of, result: r };
       if (msg.reason === 'win' || msg.reason === 'survived') {
@@ -399,7 +400,7 @@ class App {
     this.hud.showSpectate(false);
   }
 
-  applyResult(r) {
+  applyResult(r, { notify = true } = {}) {
     if (!this.user) return;
     this.user.coins = r.coins;
     this.user.xp = r.xp;
@@ -407,20 +408,25 @@ class App {
     Object.assign(this.user, { level: lp.level, xpInto: lp.into, xpNeed: lp.need });
     if (r.levelAfter > r.levelBefore) {
       this.sfx.play('level');
-      toast({ icon: '⬆️', title: `${pick(PHRASES.levelup)} Nivel ${r.levelAfter}`, sub: `+${formatGs(r.levelUpCoins)}` });
+      if (notify) toast({ icon: '⬆️', title: `${pick(PHRASES.levelup)} Nivel ${r.levelAfter}`, sub: `+${formatGs(r.levelUpCoins)}` });
     }
-    for (const a of r.newAchievements || []) this.onAchievement(a, false);
-    for (const s of r.newSkins || []) toast({ icon: '🎨', title: `¡Skin nueva: ${SKIN_MAP[s]?.name || s}!`, sub: 'Equipala en la tienda' });
+    for (const a of r.newAchievements || []) this.onAchievement(a, false, notify);
+    if (notify) for (const s of r.newSkins || []) toast({ icon: '🎨', title: `¡Skin nueva: ${SKIN_MAP[s]?.name || s}!`, sub: 'Equipala en la tienda' });
     this.menu.updateAccount(this.user);
   }
 
-  onAchievement(a, sound = true) {
+  /**
+   * @param {boolean} sound
+   * @param {boolean} notify  mostrar el cartelito
+   * @param {boolean} live    true si viene en vivo (las monedas todavía no están sumadas en this.user)
+   */
+  onAchievement(a, sound = true, notify = true, live = false) {
     if (sound) this.sfx.play('ach');
-    toast({ icon: a.icon || '🏅', title: `${pick(PHRASES.ach)} ${a.name}`, sub: a.coins ? `+${formatGs(a.coins)}${a.skin ? ' · ¡y una skin!' : ''}` : '' });
+    if (notify) toast({ icon: a.icon || '🏅', title: `${pick(PHRASES.ach)} ${a.name}`, sub: a.coins ? `+${formatGs(a.coins)}${a.skin ? ' · ¡y una skin!' : ''}` : '' });
     if (this.user) {
       this.user.achievements = this.user.achievements || [];
       if (!this.user.achievements.some((x) => x.id === a.id)) this.user.achievements.push({ id: a.id, at: Date.now() });
-      if (a.coins) {
+      if (live && a.coins) {
         this.user.coins += a.coins;
         this.menu.updateAccount(this.user);
       }

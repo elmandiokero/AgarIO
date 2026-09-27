@@ -574,13 +574,13 @@ body.touch #score { font-size: 1rem; }
   gap: 8px;
   z-index: 50;
   pointer-events: none;
-  width: min(92vw, 380px);
+  width: min(92vw, 340px);
 }
 .toast {
   background: rgba(10, 20, 40, 0.95);
   border: 1px solid rgba(245, 197, 66, 0.6);
   border-radius: 14px;
-  padding: 10px 14px;
+  padding: 7px 12px;
   display: flex;
   gap: 10px;
   align-items: center;
@@ -588,7 +588,7 @@ body.touch #score { font-size: 1rem; }
   animation: toastin 0.3s ease-out, fadeout 5s 0.3s forwards;
   color: #fff;
 }
-.toast .ti { font-size: 1.7rem; }
+.toast .ti { font-size: 1.4rem; }
 .toast b { display: block; }
 .toast small { color: var(--muted); }
 .toast.error { border-color: #ff5252; }

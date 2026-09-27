@@ -304,7 +304,7 @@ function drawShop(app, body, data) {
     try {
       const r = await api.post('/shop/buy', { skinId: s.id });
       toast({ icon: '🛍️', title: `¡Compraste ${s.name}!`, sub: `Te quedan ${formatGs(r.coins)}` });
-      for (const a of r.achievements || []) app.onAchievement(a);
+      for (const a of r.achievements || []) app.onAchievement(a, true, true, true);
       if (app.user) app.user.coins = r.coins;
       await equip(s.id, true);
       app.refreshUser();
@@ -481,7 +481,7 @@ export function renderInvite(app, body) {
         boxes.append(
           h('div', { class: 'invite-box' }, h('b', null, '🌎 Por Internet'), h('p', { class: 'hint' }, 'Para amigos en cualquier lugar (datos móviles u otra WiFi).'), h('img', { src: `/api/qr.svg?target=public&t=${Date.now()}`, alt: 'QR' }), h('code', null, info.publicUrl), copyBtn(info.publicUrl))
         );
-      } else {
+      } else if (!info.remote) {
         boxes.append(h('div', { class: 'invite-box' }, h('b', null, '🌎 Por Internet'), h('p', { class: 'muted' }, 'El túnel no está activo. En la PC del servidor abrí 2-INICIAR.bat para tener un link público.')));
       }
       info.lanUrls.slice(0, 2).forEach((url, i) => {
