@@ -25,7 +25,7 @@ export function graphemeLength(s) {
 
 /** Quita control/invisibles y deja como máximo una marca combinante por letra. */
 function stripWeird(s, allowed) {
-  s = String(s ?? '').normalize('NFC').replace(INVISIBLE, '');
+  s = String(s ?? '').normalize('NFC').replace(/[\t\n\r\v\f]/g, ' ').replace(INVISIBLE, '');
   let out = '';
   let marks = 0;
   for (const ch of s) {

@@ -525,7 +525,7 @@ body.joy-right #joy-zone { left: auto; right: 0; }
 #touch-buttons {
   position: absolute;
   right: calc(24px + var(--safe-right));
-  bottom: calc(190px + var(--safe-bottom));
+  bottom: calc(22px + var(--safe-bottom));
   display: flex;
   gap: 14px;
   align-items: flex-end;
@@ -550,14 +550,17 @@ body.joy-right #touch-buttons { right: auto; left: calc(24px + var(--safe-left))
 }
 .touch-btn.big { width: calc(88px * var(--btn-scale)); height: calc(88px * var(--btn-scale)); background: rgba(213, 43, 30, 0.6); }
 .touch-btn.pressed { transform: scale(0.92); filter: brightness(1.3); }
-body.touch #minimap { bottom: auto; top: calc(62px + var(--safe-top)); right: calc(10px + var(--safe-right)); width: 110px; height: 110px; }
 body.touch #leaderboard { width: 150px; font-size: 0.72rem; padding: 6px 8px; }
 body.touch #leaderboard #lb-list li:nth-child(n + 6) { display: none; }
-body.touch #minimap { top: calc(190px + var(--safe-top)); }
+body.touch #minimap { bottom: auto; top: calc(150px + var(--safe-top)); right: calc(10px + var(--safe-right)); width: 96px; height: 96px; }
+body.joy-right.touch #minimap { right: auto; left: calc(10px + var(--safe-left)); top: calc(130px + var(--safe-top)); }
+body.touch #score { bottom: calc(8px + var(--safe-bottom)); left: 50%; transform: translateX(-50%); text-align: center; padding: 4px 10px; }
+body.touch #score small { display: none; }
+@media (max-height: 360px) { body.touch #minimap { display: none; } }
 body.touch #chat { bottom: auto; top: calc(62px + var(--safe-top)); left: calc(64px + var(--safe-left)); width: min(300px, 50vw); }
 body.touch #chat-log { max-height: 90px; font-size: 0.75rem; }
 body.touch #btn-chat { display: block; top: calc(10px + var(--safe-top)); left: calc(62px + var(--safe-left)); }
-body.touch #killfeed { top: auto; bottom: calc(60px + var(--safe-bottom)); left: 50%; transform: translateX(-50%); align-items: center; font-size: 0.72rem; }
+body.touch #killfeed { top: auto; bottom: calc(44px + var(--safe-bottom)); left: 50%; transform: translateX(-50%); align-items: center; font-size: 0.72rem; }
 body.touch #score { font-size: 1rem; }
 
 /* ------------------------------------------------------------------ toasts */

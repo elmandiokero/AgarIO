@@ -42,10 +42,17 @@ export function migrate(db) {
   }
 }
 
-/** Ejecuta fn dentro de una transacción (anidable: si ya hay una, sólo ejecuta). */
+const depth = new WeakMap();
+
+/**
+ * Ejecuta fn dentro de una transacción. Es anidable: si ya hay una abierta, sólo ejecuta fn
+ * (llevamos la cuenta nosotros porque db.isTransaction no existe en todas las versiones de Node).
+ */
 export function tx(db, fn) {
-  if (db.isTransaction) return fn();
+  const d = depth.get(db) || 0;
+  if (d > 0) return fn();
   db.exec('BEGIN IMMEDIATE');
+  depth.set(db, 1);
   try {
     const out = fn();
     db.exec('COMMIT');
@@ -57,5 +64,7 @@ export function tx(db, fn) {
       /* ignorar */
     }
     throw err;
+  } finally {
+    depth.set(db, 0);
   }
 }
