@@ -5,7 +5,9 @@
   "_comment_admins": "Usuarios (nombre de cuenta) con permisos de admin en el chat: /bots, /br start, /kick, /mute, /anuncio, /perf",
   "admins": [],
   "tunnel": {
-    "_comment": "protocol: auto | http2 (usá http2 si el túnel no conecta)",
+    "_comment": "mode: quick = link al azar (…trycloudflare.com) | named = dominio propio (lo configura 4-CONFIGURAR-DOMINIO.bat) | token = túnel del panel de Cloudflare. protocol: auto | http2 (usá http2 si el túnel no conecta)",
+    "mode": "quick",
+    "hostname": "agario.alexlamasg.lat",
     "protocol": "auto"
   },
   "chat": {

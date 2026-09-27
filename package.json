@@ -16,6 +16,7 @@
     "test:e2e": "node --disable-warning=ExperimentalWarning tests/e2e/smoke.mjs",
     "admin": "node --disable-warning=ExperimentalWarning server/tools/admin-cli.js",
     "backup": "node --disable-warning=ExperimentalWarning server/tools/admin-cli.js backup",
+    "dominio": "node --disable-warning=ExperimentalWarning server/tools/dominio.js",
     "loadtest": "node scripts/dev/loadtest.mjs"
   },
   "license": "MIT",

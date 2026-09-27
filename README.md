@@ -41,6 +41,7 @@ Corre en **tu PC con Windows 11** como servidor, y tus amigos juegan desde el **
 |---|---|
 | **`2-INICIAR.bat`** | Servidor + **link de Internet** (recomendado). |
 | `3-INICIAR-SOLO-WIFI.bat` | Sólo para los que están en tu misma red WiFi. |
+| `4-CONFIGURAR-DOMINIO.bat` | Usa tu dominio fijo **https://agario.alexlamasg.lat** en vez del link al azar (una sola vez). |
 | `ABRIR-FIREWALL.bat` | Abre el puerto en el firewall (si tus amigos de la WiFi no pueden entrar). |
 | `RESPALDAR-DATOS.bat` | Hace una copia de seguridad de las cuentas y estadísticas. |
 
@@ -66,6 +67,42 @@ Al iniciar vas a ver algo así:
 > 🔁 El link de Internet **cambia cada vez que reiniciás** el servidor. Mientras la ventana negra esté abierta, el juego funciona. **Cerrá la ventana (o Ctrl+C) para apagarlo** — las partidas en curso se guardan.
 
 > 💤 Mientras hospedás, configurá Windows para que **la PC no se suspenda** (Configuración → Sistema → Inicio/apagado y suspensión).
+
+## 🌐 Tu dominio propio: https://agario.alexlamasg.lat
+
+En vez de un link al azar que cambia cada vez, el juego puede estar siempre en **https://agario.alexlamasg.lat**. Se usa un *túnel con nombre* de Cloudflare (gratis): no hay que abrir puertos del router y funciona aunque tu proveedor de Internet use CGNAT.
+
+**Requisito:** el dominio `alexlamasg.lat` tiene que estar en tu cuenta de Cloudflare (ya lo está: sus DNS responden desde Cloudflare) y tenés que haber corrido `1-INSTALAR.bat`.
+
+**Configuración (una sola vez, en la PC del juego):**
+
+1. Doble clic en **`4-CONFIGURAR-DOMINIO.bat`**.
+2. Te pregunta la dirección: apretá **Enter** para usar `agario.alexlamasg.lat`.
+3. Te pregunta si tenés un token: apretá **Enter** (opción automática).
+4. Se abre el navegador: **iniciá sesión en Cloudflare**, elegí **alexlamasg.lat** y tocá **Authorize**. Volvé a la ventana negra: sigue sola.
+5. El script crea el túnel `jaha-io`, el registro DNS `agario` y guarda todo en `config.json`.
+6. Abrí **`2-INICIAR.bat`**. Vas a ver:
+   ```
+   🌎 Link para jugar por Internet (compartilo con tus amigos):
+      https://agario.alexlamasg.lat
+      (link fijo: es siempre el mismo)
+   ```
+
+> ℹ️ El link funciona **mientras la PC y el servidor estén prendidos**. Si está apagado, Cloudflare muestra el error *1033* o *530*.
+>
+> 🔒 La credencial del túnel queda en `C:\Users\TU_USUARIO\.cloudflared\`: no compartas esa carpeta.
+>
+> ↩️ Para volver al link al azar: abrí una terminal en la carpeta del juego y ejecutá `4-CONFIGURAR-DOMINIO.bat --desactivar`.
+
+<details>
+<summary><b>Opción B: con un token del panel de Cloudflare</b></summary>
+
+1. En [dash.cloudflare.com](https://dash.cloudflare.com) → **Zero Trust → Networks → Tunnels → Create a tunnel** → *Cloudflared* → nombre `jaha-io`.
+2. Copiá el comando que muestra (`cloudflared.exe service install eyJ…`). **No hace falta ejecutarlo.**
+3. En **Public Hostname**: Subdomain `agario`, Domain `alexlamasg.lat`, Service **HTTP** → `localhost:3000`. Guardá.
+4. En la PC, doble clic en `4-CONFIGURAR-DOMINIO.bat`, Enter para el dominio y **pegá el token** (o el comando entero) cuando lo pida.
+5. Abrí `2-INICIAR.bat`.
+</details>
 
 ### 📱 Instalar en el celular como app
 Abrí el link en el celular:
@@ -108,6 +145,8 @@ Se crea solo la primera vez (copia de `config.example.json`). Cambiás un valor,
 | `title` | Nombre del juego | `Jaha.io` |
 | `port` | Puerto | `3000` |
 | `admins` | Lista de usuarios admin, ej. `["pedro"]` | `[]` |
+| `tunnel.mode` | `quick` (link al azar), `named` (dominio propio) o `token` | `quick` |
+| `tunnel.hostname` | Tu dominio para el juego | `agario.alexlamasg.lat` |
 | `tunnel.protocol` | `auto` o `http2` (usá `http2` si el link de Internet no aparece) | `auto` |
 | `chat.enabled` / `chat.badWords` | Chat y palabras extra a bloquear | `true` / `[]` |
 | `progression.startingCoins` | ₲ de regalo al crear cuenta | `5000` |
@@ -155,7 +194,9 @@ Los datos (cuentas, estadísticas, skins) se guardan en `data\jaha.db`. Los resp
 | Windows preguntó si permitir "Node.js" y puse Cancelar | Ejecutá `ABRIR-FIREWALL.bat`: detecta y ofrece borrar esa regla de bloqueo. |
 | "El puerto 3000 ya está en uso" | Ya tenés el servidor abierto en otra ventana, o cambiá `port` en `config.json`. |
 | No aparece el link de Internet | Esperá unos segundos. Si no sale, poné `"tunnel": { "protocol": "http2" }` en `config.json`. Si existe `C:\Users\TU_USUARIO\.cloudflared\config.yml`, renombralo. Volvé a correr `1-INSTALAR.bat` si falta cloudflared. |
-| El link de Internet dejó de andar | Cambia en cada reinicio: compartí el nuevo. |
+| El link de Internet dejó de andar | El link al azar cambia en cada reinicio: compartí el nuevo, o usá tu dominio fijo con `4-CONFIGURAR-DOMINIO.bat`. |
+| `agario.alexlamasg.lat` muestra error 1033 o 530 | El servidor está apagado: abrí `2-INICIAR.bat` en la PC. |
+| "No se pudo crear el registro DNS" | Autorizaste otro dominio en Cloudflare. Ejecutá `4-CONFIGURAR-DOMINIO.bat --relogin` y elegí `alexlamasg.lat`. |
 | En el celular se ve chiquito o vertical | Girá el celular (horizontal) y usá "Agregar a inicio" para pantalla completa. |
 | Va lento en un celular viejo | Ajustes → Calidad gráfica → **Baja**. |
 | Me olvidé la contraseña | El admin la cambia con `npm run admin -- reset-password USUARIO CLAVE`. |

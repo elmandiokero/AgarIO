@@ -34,6 +34,8 @@ async function qr(url) {
   }
 }
 
+let tunnel = null;
+
 async function main() {
   if (fileError) {
     console.error(c.red(`\n✖ ${fileError}`));
@@ -73,29 +75,41 @@ async function main() {
     console.log((await qr(lan[0])).replace(/^/gm, '    '));
   }
 
-  let tunnel = null;
   if (config.tunnel.enabled) {
-    const warnCfg = cloudflaredConfigWarning();
-    if (warnCfg) log.warn(`Existe ${warnCfg}: puede impedir el túnel rápido. Si falla, renombralo.`);
-    console.log(`  🌐 Iniciando el túnel de Internet (Cloudflare)…`);
+    const mode = config.tunnel.mode;
+    if (mode === 'quick') {
+      const warnCfg = cloudflaredConfigWarning();
+      if (warnCfg) log.warn(`Existe ${warnCfg}: puede impedir el túnel rápido. Si falla, renombralo.`);
+      console.log('  🌐 Iniciando el túnel de Internet (Cloudflare)…');
+    } else {
+      console.log(`  🌐 Conectando ${c.bold(`https://${config.tunnel.hostname || '(dominio sin configurar)'}`)} con Cloudflare…`);
+    }
     tunnel = startTunnel({
       port,
-      protocol: config.tunnel.protocol,
-      cloudflaredPath: config.tunnel.cloudflaredPath,
+      tunnel: config.tunnel,
+      dataDir: config.dataDir,
       log,
-      onStatus: (s) => {
+      onStatus: (s, detail) => {
         if (s === 'missing') {
           console.log(c.yellow('  ⚠ No se encontró cloudflared. Sólo se puede jugar en la misma red WiFi.'));
           console.log(c.yellow('    Ejecutá 1-INSTALAR.bat para instalarlo.'));
+        } else if (s === 'error') {
+          console.log(c.yellow(`  ⚠ ${detail}`));
+          console.log(c.yellow('    Mientras tanto se puede jugar en la misma red WiFi.'));
         }
       },
-      onUrl: async (url) => {
+      onUrl: async (url, tmode) => {
         server.setPublicUrl(url);
         if (!url) return;
         console.log('');
         console.log(`  🌎 ${c.bold('Link para jugar por Internet')} (compartilo con tus amigos):`);
         console.log(`     ${c.green(url)}`);
-        console.log(c.dim('     (este link cambia cada vez que reiniciás el servidor)'));
+        if (tmode === 'quick') {
+          console.log(c.dim('     (este link cambia cada vez que reiniciás el servidor;'));
+          console.log(c.dim('      para un link fijo con tu dominio usá 4-CONFIGURAR-DOMINIO.bat)'));
+        } else {
+          console.log(c.dim('     (link fijo: es siempre el mismo)'));
+        }
         console.log((await qr(url)).replace(/^/gm, '    '));
       },
     });
@@ -131,8 +145,11 @@ async function main() {
     } catch {
       /* ignorar */
     }
+    tunnel?.stop();
     process.exit(1);
   });
+  // Que cloudflared no quede andando solo si el proceso termina
+  process.on('exit', () => tunnel?.stop());
 }
 
 main().catch((err) => {

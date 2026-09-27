@@ -13,8 +13,14 @@ export const DEFAULT_CONFIG = {
   admins: [],
   tunnel: {
     enabled: false,
+    mode: 'quick', // quick (link al azar) | named (dominio propio) | token (panel de Cloudflare)
     protocol: 'auto', // auto | http2 | quic
     cloudflaredPath: '',
+    hostname: '', // ej. agario.alexlamasg.lat (modos named/token)
+    name: 'jaha-io', // nombre del túnel en Cloudflare (modo named)
+    id: '', // UUID del túnel (modo named; lo completa 4-CONFIGURAR-DOMINIO.bat)
+    credentialsFile: '', // credencial del túnel (modo named)
+    token: '', // token del panel de Cloudflare (modo token)
   },
   limits: {
     maxConnections: 150,
@@ -160,6 +166,11 @@ export function sanitizeConfig(c) {
     m.maxPlayers = Math.round(num(m.maxPlayers, 1, 200, d[mode].maxPlayers));
   }
   if (!Array.isArray(c.br.phases) || c.br.phases.length === 0) c.br.phases = d.br.phases;
+  if (!['quick', 'named', 'token'].includes(c.tunnel.mode)) c.tunnel.mode = 'quick';
+  for (const k of ['hostname', 'name', 'id', 'credentialsFile', 'token', 'cloudflaredPath', 'protocol']) {
+    if (typeof c.tunnel[k] !== 'string') c.tunnel[k] = d.tunnel[k];
+  }
+  c.tunnel.hostname = c.tunnel.hostname.trim().toLowerCase().replace(/^https?:\/\//, '').replace(/\/.*$/, '');
   if (!Array.isArray(c.admins)) c.admins = [];
   c.admins = c.admins.filter((a) => typeof a === 'string').map((a) => a.toLowerCase());
   if (!Array.isArray(c.chat.badWords)) c.chat.badWords = [];
