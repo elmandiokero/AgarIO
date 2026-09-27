@@ -17,7 +17,9 @@ function pushSample(e, t, x, y, r) {
     if (t - last.t > 120) s.push({ t: t - 50, x: last.x, y: last.y, r: last.r });
   }
   s.push({ t, x, y, r });
-  while (s.length > 4) s.shift();
+  // Guardar ~700 ms de historia (alcanza aunque el retraso de interpolación suba a 250 ms)
+  while (s.length > 2 && s[1].t < t - 700) s.shift();
+  if (s.length > 32) s.splice(0, s.length - 32);
 }
 
 function sampleAt(e, rt) {

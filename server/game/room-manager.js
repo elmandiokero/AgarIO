@@ -19,7 +19,7 @@ export class RoomManager {
   }
 
   get(mode) {
-    return this.rooms[mode] || null;
+    return typeof mode === 'string' && Object.hasOwn(this.rooms, mode) ? this.rooms[mode] : null;
   }
 
   start(intervalMs = 5) {

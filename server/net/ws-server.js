@@ -26,6 +26,8 @@ export function connUser(u) {
 
 export function createWsServer({ server, config, sessions, repos, rooms, log, clock }) {
   const wss = new WebSocketServer({ server, path: '/ws', maxPayload: 4096, perMessageDeflate: false });
+  // ws re-emite los errores del servidor HTTP (ej. puerto ocupado): los maneja index.js
+  wss.on('error', () => {});
   const conns = new Set();
   const perIp = new Map();
   const nameFilter = createWordFilter(config.chat.badWords);
@@ -117,12 +119,15 @@ export function createWsServer({ server, config, sessions, repos, rooms, log, cl
           const u = sessions.resolve(msg.token);
           conn.user = u ? connUser(u) : null;
         }
+        if (conn.player && conn.room && !conn.player.alive) conn.room.refreshIdentity(conn.player);
         conn.sendJson({ t: 'authed', user: publicUser(conn.user) });
         return;
       }
       case 'join': {
         const room = rooms.get(msg.mode);
         if (!room) return conn.sendJson({ t: 'err', code: 'mode', msg: 'Ese modo no está disponible.' });
+        const nowJ = clock.now();
+        if (nowJ - (conn.lastJoinAt || 0) < 1500) return; // anti-spam de entrar y salir
         if (conn.user && repos) {
           const fresh = repos.getUser(conn.user.id);
           if (!fresh || fresh.banned) return conn.close(4003, 'banned');
@@ -134,6 +139,7 @@ export function createWsServer({ server, config, sessions, repos, rooms, log, cl
         if (skin === null) return conn.sendJson({ t: 'err', code: 'skin', msg: 'No tenés esa skin todavía.' });
         if (typeof msg.aspect === 'number' && Number.isFinite(msg.aspect)) conn.aspect = clamp(msg.aspect, 0.45, 2.4);
         if (conn.room) conn.room.leave(conn);
+        conn.lastJoinAt = nowJ;
         room.join(conn, { name, skin });
         return;
       }

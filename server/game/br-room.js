@@ -16,6 +16,7 @@ export class BrRoom extends Room {
     this.round = 0;
     this.podium = null;
     this.fastForwardAt = null;
+    this.eliminated = 0;
     this.world.populate();
     this.syncBots();
   }
@@ -55,7 +56,7 @@ export class BrRoom extends Room {
     switch (this.state) {
       case LOBBY: {
         const q = this.queuedPlayers().length;
-        if (q >= this.mcfg.minHumans) {
+        if (q >= this.mcfg.minHumans && q + this.mcfg.bots >= 2) {
           if (this.stateEndsAt === null) {
             this.stateEndsAt = now + this.mcfg.lobbySeconds * 1000;
             this.broadcastStatus();
@@ -147,12 +148,13 @@ export class BrRoom extends Room {
   }
 
   startPlaying() {
+    this.eliminated = 0;
     for (const p of this.participants) p.frozen = false;
     this.state = PLAYING;
     this.roundStart = this.world.time;
     this.stateEndsAt = null;
     this.world.zoneDamage = (x, y, m) => this.zone.damage(x, y, m);
-    this.world.spawnArea = () => this.zone.state;
+    this.world.spawnArea = () => (this.zone.state.r > 250 ? this.zone.state : null);
     this.broadcastStatus();
   }
 
@@ -193,8 +195,9 @@ export class BrRoom extends Room {
       p.frozen = false;
       p.brPlace = 0;
       if (p.isBot) continue;
-      if (!p.conn) this.removeHuman(p);
-      else p.brState = 'queued';
+      p.lifeEnded = true;
+      p.pendingDead = null;
+      p.brState = 'queued'; // los desconectados se limpian solos al vencer su tiempo de gracia
     }
     this.participants = [];
     this.state = LOBBY;
@@ -209,41 +212,45 @@ export class BrRoom extends Room {
 
   // ------------------------------------------------------------------ muertes
 
+  /** Puesto al quedar eliminado: el primero en caer queda último. Nunca dos con el mismo puesto. */
+  assignPlace(p) {
+    if (!p.brPlace) {
+      p.brPlace = Math.max(1, this.participants.length - this.eliminated);
+      this.eliminated++;
+    }
+    return p.brPlace;
+  }
+
   onPlayerDeath(p, killer, reason) {
-    if (!this.participants.includes(p)) return;
-    const place = this.aliveParticipants().length + 1;
+    if (!this.participants.includes(p) || this.state !== PLAYING) return;
+    const place = this.assignPlace(p);
     const of = this.participants.length;
-    p.brPlace = place;
     p.brState = 'eliminated';
     if (p.isBot) {
       p.lifeEnded = true;
       return;
     }
     const out = this.endLife(p, reason, { killer, place, of });
-    this.sendDead(p, out, { place, of });
+    this.sendDead(p, out, { place, of, win: place === 1 });
     if (p.conn) p.conn.spectating = 'auto';
   }
 
   leaveExtra(p) {
-    if (this.state === PLAYING && this.participants.includes(p)) {
-      return { place: this.aliveParticipants().length, of: this.participants.length };
+    if (this.state === PLAYING && this.participants.includes(p) && p.alive) {
+      return { place: this.assignPlace(p), of: this.participants.length };
     }
     return {};
   }
 
   finalizeDisconnected(p) {
-    if (p.alive && !p.lifeEnded) {
-      const extra = this.leaveExtra(p);
-      if (extra.place) p.brPlace = extra.place;
-      this.endLife(p, 'disconnect', extra);
-    }
+    if (p.alive && !p.lifeEnded) this.endLife(p, 'disconnect', this.leaveExtra(p));
     this.removeHuman(p);
   }
 
   removeHuman(p) {
-    if (this.state === PLAYING && this.participants.includes(p) && p.alive && !p.brPlace) {
-      p.brPlace = this.aliveParticipants().length;
-    }
+    if (this.state === PLAYING && this.participants.includes(p) && p.alive) this.assignPlace(p);
+    // Bug corregido: si se va durante la cuenta atrás no queda como participante fantasma
+    if (this.state === COUNTDOWN) this.participants = this.participants.filter((x) => x !== p);
     p.alive = false;
     super.removeHuman(p);
   }
@@ -347,6 +354,7 @@ export class BrRoom extends Room {
   }
 
   forceStop() {
-    if (this.state === PLAYING || this.state === COUNTDOWN) this.endRound('admin');
+    if (this.state === PLAYING) this.endRound('admin');
+    else if (this.state === COUNTDOWN) this.backToLobby(); // todavía no empezó: sin premios
   }
 }

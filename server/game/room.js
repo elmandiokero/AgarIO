@@ -124,7 +124,23 @@ export class Room {
     if (i >= 0) this.bots.splice(i, 1);
   }
 
+  /** Mantiene al día la cuenta del jugador (por si inició o cerró sesión estando en la sala). */
+  refreshIdentity(p) {
+    if (p.isBot) return;
+    const u = p.conn?.user || null;
+    const uid = u ? u.id : null;
+    if (p.userId !== uid) {
+      p.userId = uid;
+      p.unlocked = uid && this.progression ? this.progression.getUnlocked(uid) : null;
+    }
+    p.isAdmin = !!u?.is_admin;
+    p.level = u ? u.level : 1;
+    if (u) p.name = u.display_name;
+    p.infoVersion = ++this.infoCounter;
+  }
+
   startLife(p) {
+    if (!p.isBot && p.conn) this.refreshIdentity(p);
     p.life = newLifeStats(this.world.time);
     p.lifeStartedWall = this.clock.now();
     p.lifeEnded = false;
@@ -382,6 +398,7 @@ export class Room {
 
   handleDeath(ev) {
     const { player: p, killer, reason } = ev;
+    if (p.alive) return; // aviso viejo: ya volvió a aparecer
     if ((killer && !killer.isBot) || !p.isBot || p.life.maxMass >= 400) {
       this.broadcastJson({ t: 'feed', k: killer ? killer.name : null, v: p.name, r: reason });
     }
@@ -396,12 +413,14 @@ export class Room {
   onPlayerDeath() {}
 
   sendDead(p, out, extra = {}) {
-    if (!p.conn || !out) return;
-    p.conn.sendJson({ t: 'dead', mode: this.mode, reason: out.summary.reason, killer: out.summary.killerName, summary: out.summary, result: out.result, ...extra });
+    if (!out) return;
+    const msg = { t: 'dead', mode: this.mode, reason: out.summary.reason, killer: out.summary.killerName, summary: out.summary, result: out.result, ...extra };
+    if (p.conn) p.conn.sendJson(msg);
+    else p.pendingDead = msg; // se muestra si vuelve a conectarse
   }
 
   finalizeDisconnected(p) {
-    if (p.alive && !p.lifeEnded) this.endLife(p, 'disconnect');
+    if (p.alive && !p.lifeEnded) this.endLife(p, 'disconnect', this.leaveExtra ? this.leaveExtra(p) : {});
     this.removeHuman(p);
   }
 
@@ -482,29 +501,42 @@ export class Room {
     if (!p) return;
     p.conn = null;
     conn.player = null;
-    if (p.alive && p.cells.length) {
-      p.disconnectedAt = this.world.time;
-      p.input.dx = 0;
-      p.input.dy = 0;
-      p.ejectHeld = false;
-      p.splitRequests = 0;
-    } else {
-      this.removeHuman(p);
-    }
+    // Se guarda el lugar un rato (vivo, muerto, en cola o mirando) por si vuelve
+    p.disconnectedAt = this.world.time;
+    p.input.dx = 0;
+    p.input.dy = 0;
+    p.ejectHeld = false;
+    p.splitRequests = 0;
   }
 
   /** Reconectar a un jugador que se cortó. */
   tryResume(conn, key) {
     if (typeof key !== 'string') return false;
     for (const p of this.players.values()) {
-      if (p.isBot || p.resumeKey !== key || p.disconnectedAt === null) continue;
+      if (p.isBot || p.resumeKey !== key) continue;
       const uid = conn.user ? conn.user.id : null;
       if (p.userId !== uid) return false;
+      // Conexión "medio abierta" (cambio WiFi↔datos): reemplazar la vieja
+      const old = p.conn;
+      if (old && old !== conn) {
+        this.conns.delete(old);
+        old.player = null;
+        old.room = null;
+        old.close(4004, 'reemplazada');
+      }
       p.disconnectedAt = null;
       p.conn = conn;
+      p.input.dx = 0;
+      p.input.dy = 0;
+      p.ejectHeld = false;
       conn.player = p;
       this.attachConn(conn);
+      if (!p.alive || !p.cells.length) conn.spectating = 'auto';
       conn.sendJson(this.joinedMessage(conn, { resumed: true, ...this.joinExtra(conn) }));
+      if (p.pendingDead) {
+        conn.sendJson(p.pendingDead);
+        p.pendingDead = null;
+      }
       return true;
     }
     return false;

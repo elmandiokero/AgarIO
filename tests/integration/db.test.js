@@ -83,3 +83,16 @@ test('subir de nivel da skins de mitología', async () => {
   assert.ok(res.newSkins.includes('jasy_jatere'));
   assert.ok(res.levelUpCoins > 0);
 });
+
+test('regresión: entrar y salir enseguida no suma partidas ni logros (anti-farmeo)', async () => {
+  const { repos } = await setup();
+  const prog = createProgression(repos, testConfig());
+  const id = repos.createUser({ username: 'farmer', displayName: 'Farmer', passHash: 'x', freeSkins: FREE_SKINS });
+  for (let i = 0; i < 120; i++) {
+    const r = prog.applyLifeResult(id, { mode: 'ffa', reason: 'left', startedAt: 0, durationMs: 500, maxMass: 20, humanKills: 0, botKills: 0, hourLocal: 14 });
+    assert.equal(r.ignored, true);
+  }
+  assert.equal(repos.getStats(id).games_played, 0);
+  assert.equal(repos.getMatches(id).length, 0);
+  assert.equal(prog.getUnlocked(id).size, 0);
+});

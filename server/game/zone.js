@@ -79,6 +79,7 @@ export class Zone {
 
   isOutside(x, y) {
     const s = this.state;
+    if (s.r <= 0) return true;
     return Math.hypot(x - s.x, y - s.y) > s.r;
   }
 

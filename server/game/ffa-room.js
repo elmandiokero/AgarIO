@@ -54,8 +54,9 @@ export class FfaRoom extends Room {
   respawn(conn, { name, skin } = {}) {
     const p = conn.player;
     if (!p || p.alive) return;
-    if (name) p.name = name;
+    if (name && !conn.user) p.name = name;
     if (skin !== undefined) p.skin = skin;
+    p.pendingDead = null;
     conn.spectating = null;
     this.startLife(p);
     this.world.spawnPlayer(p, this.mcfg.startMass);

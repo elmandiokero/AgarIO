@@ -173,3 +173,126 @@ test('Batalla real: salir en medio de la ronda cuenta como eliminado', () => {
   assert.equal(room.aliveParticipants().length, before - 1);
   assert.equal(room.players.has(p.pid), false);
 });
+
+// ---------------------------------------------------------------- regresiones de la revisión de código
+
+test('regresión: reconectar después de morir muestra la pantalla de muerte y deja mirando', () => {
+  const config = testConfig({ ffa: { bots: 0 } });
+  const clock = createManualClock();
+  const room = new FfaRoom({ config, rng: createRng(31), clock });
+  room.world.spawnProtectionMs = 0;
+  const victim = fakeConn();
+  const hunter = fakeConn();
+  room.join(victim, { name: 'Víctima', skin: '' });
+  room.join(hunter, { name: 'Cazador', skin: '' });
+  const key = victim.last('joined').resumeKey;
+  const v = victim.player;
+  room.disconnect(victim);
+  const hc = hunter.player.cells[0];
+  hc.x = v.cells[0].x;
+  hc.y = v.cells[0].y;
+  room.world._setMass(hc, 500);
+  hunter.player.protectedUntil = 0;
+  v.protectedUntil = 0;
+  stepN(room, 2, clock);
+  assert.equal(v.alive, false);
+  const again = fakeConn();
+  assert.equal(room.tryResume(again, key), true);
+  assert.ok(again.last('dead'), 'recibe el aviso de muerte guardado');
+  assert.equal(again.spectating, 'auto');
+});
+
+test('regresión: reconectar aunque el servidor no haya notado el corte (conexión medio abierta)', () => {
+  const config = testConfig({ ffa: { bots: 0 } });
+  const clock = createManualClock();
+  const room = new FfaRoom({ config, rng: createRng(32), clock });
+  const old = fakeConn();
+  room.join(old, { name: 'Viajero', skin: '' });
+  const key = old.last('joined').resumeKey;
+  const p = old.player;
+  const fresh = fakeConn();
+  assert.equal(room.tryResume(fresh, key), true);
+  assert.equal(p.conn, fresh);
+  assert.equal(old.closed, 4004, 'la conexión vieja se cierra');
+  assert.equal(room.conns.has(old), false);
+});
+
+test('regresión: iniciar sesión estando muerto aplica la cuenta en la próxima vida', () => {
+  const config = testConfig({ ffa: { bots: 0 } });
+  const clock = createManualClock();
+  const calls = [];
+  const progression = { getUnlocked: () => new Set(), checkLive: () => [], applyLifeResult: (uid, s) => (calls.push([uid, s.reason]), null) };
+  const room = new FfaRoom({ config, rng: createRng(33), clock, progression });
+  const conn = fakeConn();
+  room.join(conn, { name: 'Invitado', skin: '' });
+  const p = conn.player;
+  room.world.removeCell(p.cells[0], null, 'zone'); // muere
+  stepN(room, 1, clock);
+  conn.user = { id: 42, display_name: 'Cuenta Nueva', is_admin: false, level: 3 };
+  room.respawn(conn, {});
+  assert.equal(p.userId, 42);
+  assert.equal(p.name, 'Cuenta Nueva');
+  stepN(room, 40 * 20, clock);
+  room.leave(conn);
+  assert.deepEqual(calls.at(-1), [42, 'left']);
+});
+
+test('regresión: Batalla real no arranca con un solo participante', () => {
+  const config = brConfig({ bots: 0 });
+  const clock = createManualClock();
+  const room = new BrRoom({ config, rng: createRng(34), clock });
+  const conn = fakeConn();
+  room.join(conn, { name: 'Solo', skin: '' });
+  stepN(room, 40 * 5, clock);
+  assert.equal(room.state, 'lobby');
+  const conn2 = fakeConn();
+  room.join(conn2, { name: 'Otro', skin: '' });
+  stepN(room, 40 * 2, clock);
+  assert.notEqual(room.state, 'lobby');
+});
+
+test('regresión: /br stop en la cuenta atrás cancela sin premios; irse en la cuenta atrás no deja fantasmas', () => {
+  const config = brConfig({ bots: 3, countdownSeconds: 5 });
+  const clock = createManualClock();
+  const room = new BrRoom({ config, rng: createRng(35), clock });
+  const a = fakeConn();
+  room.join(a, { name: 'A', skin: '' });
+  while (room.state !== 'countdown') stepN(room, 1, clock);
+  room.leave(a);
+  assert.equal(room.participants.length, 3, 'sin el que se fue');
+  room.join(a, { name: 'A', skin: '' });
+  assert.equal(room.participants.length, 4);
+  room.forceStop();
+  assert.equal(room.state, 'lobby');
+  assert.equal(a.last('dead'), null, 'no hubo resultado');
+});
+
+test('regresión: puestos únicos aunque mueran en el mismo tick', () => {
+  const config = brConfig({ bots: 3 });
+  const clock = createManualClock();
+  const room = new BrRoom({ config, rng: createRng(36), clock });
+  const a = fakeConn();
+  room.join(a, { name: 'A', skin: '' });
+  while (room.state !== 'playing') stepN(room, 1, clock);
+  // matar a todos en el mismo tick con la zona
+  room.world.zoneDamage = () => 1e9;
+  stepN(room, 1, clock);
+  const places = room.participants.map((p) => p.brPlace).sort((x, y) => x - y);
+  assert.deepEqual(places, [1, 2, 3, 4]);
+  assert.equal(room.state, 'ended');
+});
+
+test('regresión: la zona final no concentra comida y con radio 0 todos reciben daño', async () => {
+  const { Zone } = await import('../../server/game/zone.js');
+  const z = new Zone(1000, [{ hold: 0, shrink: 1, radius: 0, dmgPct: 0.1, dmgFlat: 6 }], createRng(1));
+  z.update(5000);
+  assert.equal(z.state.r, 0);
+  assert.ok(z.damage(z.state.x, z.state.y, 100) > 0, 'justo en el centro también');
+  const config = brConfig({ bots: 3 });
+  const clock = createManualClock();
+  const room = new BrRoom({ config, rng: createRng(37), clock });
+  room.join(fakeConn(), { name: 'A', skin: '' });
+  while (room.state !== 'playing') stepN(room, 1, clock);
+  room.zone.state.r = 0;
+  assert.equal(room.world.spawnArea(), null, 'con la zona cerrada la comida sale en todo el mapa');
+});

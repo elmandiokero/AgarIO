@@ -41,6 +41,13 @@ export function createProgression(repos, config, clock = { now: () => Date.now()
         if (!user) return null;
         const rewards = computeRewards(s, pcfg);
         const levelBefore = levelFromXp(user.xp);
+        if (rewards.tooShort) {
+          // Vida demasiado corta: no suma partidas, historial ni logros (evita farmear entrando y saliendo)
+          return {
+            rewards, xp: user.xp, coins: user.coins, levelBefore, levelAfter: levelBefore, levelUpCoins: 0,
+            newSkins: [], newAchievements: [], achievementCoins: 0, ignored: true,
+          };
+        }
         const kills = (s.humanKills || 0) + (s.botKills || 0);
         repos.updateStats(userId, {
           add: {

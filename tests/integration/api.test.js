@@ -131,3 +131,16 @@ test('límite de intentos de registro por IP', async () => {
   }
   assert.equal(last.status, 429);
 });
+
+test('regresión: puerto ocupado da un error manejable (no tumba el proceso)', async () => {
+  const config = testConfig();
+  const other = await createGameServer({ config, dbPath: ':memory:', seed: 3 });
+  const port = Number(new URL(base).port);
+  await assert.rejects(other.listen(port, '127.0.0.1'), (err) => err.code === 'EADDRINUSE');
+  await other.close().catch(() => {});
+});
+
+test('regresión: modos raros en rooms.get', () => {
+  for (const m of ['__proto__', 'constructor', 'toString', 'hasOwnProperty']) assert.equal(server.rooms.get(m), null);
+  assert.ok(server.rooms.get('ffa'));
+});
