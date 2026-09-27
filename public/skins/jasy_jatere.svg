@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+<defs><radialGradient id="jasy_jatere-b" ><stop offset="0" stop-color="#2F8A5F"/><stop offset="1" stop-color="#0B3423"/></radialGradient><radialGradient id="jasy_jatere-hr" cx="118" cy="96" r="120" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFE78A"/><stop offset="0.6" stop-color="#F7C932"/><stop offset="1" stop-color="#D99A0E"/></radialGradient><radialGradient id="jasy_jatere-vg" cx="128" cy="128" r="128" gradientUnits="userSpaceOnUse"><stop offset="0.74" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.3"/></radialGradient></defs>
+<rect width="256" height="256" fill="url(#jasy_jatere-b)"/>
+<g fill="#FFF38A"><circle cx="36" cy="80" r="10" opacity=".3"/><circle cx="36" cy="80" r="3.5"/><circle cx="222" cy="176" r="10" opacity=".3"/><circle cx="222" cy="176" r="3.5"/><circle cx="46" cy="208" r="8" opacity=".3"/><circle cx="46" cy="208" r="3"/></g>
+<g fill="#B8860B" stroke="#8A5A00" stroke-width="10"><circle cx="124" cy="94" r="60"/><circle cx="72" cy="120" r="40"/><circle cx="176" cy="120" r="40"/><circle cx="80" cy="162" r="34"/><circle cx="168" cy="162" r="34"/><circle cx="96" cy="70" r="32"/><circle cx="152" cy="70" r="32"/><circle cx="90" cy="196" r="22"/><circle cx="158" cy="196" r="22"/></g>
+<g fill="url(#jasy_jatere-hr)"><circle cx="124" cy="94" r="60"/><circle cx="72" cy="120" r="40"/><circle cx="176" cy="120" r="40"/><circle cx="80" cy="162" r="34"/><circle cx="168" cy="162" r="34"/><circle cx="96" cy="70" r="32"/><circle cx="152" cy="70" r="32"/><circle cx="90" cy="196" r="22"/><circle cx="158" cy="196" r="22"/></g>
+<circle cx="124" cy="144" r="50" fill="#F0B98F" stroke="#9A5F3A" stroke-width="4"/>
+<g fill="url(#jasy_jatere-hr)" stroke="#C98A10" stroke-width="3"><circle cx="94" cy="104" r="22"/><circle cx="154" cy="104" r="22"/><circle cx="124" cy="96" r="25"/></g>
+<g fill="none" stroke="#FFF3B8" stroke-width="4" stroke-linecap="round"><path d="M102,70 Q118,58 136,64 M60,112 Q62,98 74,92 M180,98 Q190,104 192,118"/></g>
+<g fill="#2B1A10"><ellipse cx="106" cy="146" rx="8" ry="10"/><ellipse cx="142" cy="146" rx="8" ry="10"/></g>
+<g fill="#FFFFFF"><circle cx="109" cy="142" r="3"/><circle cx="145" cy="142" r="3"/></g>
+<g fill="#F28B82" opacity=".7"><circle cx="92" cy="164" r="8"/><circle cx="156" cy="164" r="8"/></g>
+<path d="M112,170 Q124,182 136,170" fill="none" stroke="#7A3B22" stroke-width="4" stroke-linecap="round"/>
+<path d="M196,224 L208,92" stroke="#7A5200" stroke-width="11" stroke-linecap="round"/>
+<path d="M196,224 L208,92" stroke="#F5D04A" stroke-width="5" stroke-linecap="round"/>
+<circle cx="208" cy="84" r="18" fill="#FFF59D" opacity=".4"/>
+<polygon points="208,68 211.5,80.5 224,84 211.5,87.5 208,100 204.5,87.5 192,84 204.5,80.5" fill="#FFF59D" stroke="#E0A800" stroke-width="2" stroke-linejoin="round"/>
+<g fill="#FFF59D"><polygon points="186,53 187.4,58.6 193,60 187.4,61.4 186,67 184.6,61.4 179,60 184.6,58.6"/><polygon points="228,106 229.4,110.6 234,112 229.4,113.4 228,118 226.6,113.4 222,112 226.6,110.6"/></g>
+<circle cx="128" cy="128" r="128" fill="url(#jasy_jatere-vg)"/>
+</svg>

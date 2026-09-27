@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+<defs><radialGradient id="terere-b" ><stop offset="0" stop-color="#86E3F0"/><stop offset="1" stop-color="#12708A"/></radialGradient><linearGradient id="terere-hn" ><stop offset="0" stop-color="#6E4020"/><stop offset="0.3" stop-color="#E9C792"/><stop offset="0.55" stop-color="#D6A86A"/><stop offset="1" stop-color="#6A3C1C"/></linearGradient><linearGradient id="terere-mt" ><stop offset="0" stop-color="#F4F7FA"/><stop offset="0.5" stop-color="#A9B3BE"/><stop offset="1" stop-color="#E6EBF0"/></linearGradient><g id="terere-lf"><path d="M0,0 C10,-14 34,-16 48,0 C34,16 10,14 0,0 Z" fill="#43A047" stroke="#1B5E20" stroke-width="3" stroke-linejoin="round"/><path d="M3,0 L42,0" stroke="#1B5E20" stroke-width="2"/></g><radialGradient id="terere-vg" cx="128" cy="128" r="128" gradientUnits="userSpaceOnUse"><stop offset="0.74" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.3"/></radialGradient></defs>
+<rect width="256" height="256" fill="url(#terere-b)"/>
+<use href="#terere-lf" transform="translate(116 204) rotate(156) scale(1.2)"/>
+<use href="#terere-lf" transform="translate(116 204) rotate(196) scale(1.15)"/>
+<use href="#terere-lf" transform="translate(140 204) rotate(-16) scale(1.2)"/>
+<use href="#terere-lf" transform="translate(140 204) rotate(24) scale(1.15)"/>
+<path d="M80,80 L94,204 A34,10 0 0,0 162,204 L176,80 Z" fill="url(#terere-hn)" stroke="#4A2A10" stroke-width="5" stroke-linejoin="round"/>
+<path d="M106,110 L112,196 M152,110 L147,196" stroke="#7A4A22" stroke-width="3" opacity=".45"/>
+<path d="M83,104 A45,12 0 0,0 173,104" fill="none" stroke="#3E4650" stroke-width="13"/>
+<path d="M83,104 A45,12 0 0,0 173,104" fill="none" stroke="url(#terere-mt)" stroke-width="8"/>
+<path d="M92,184 A36,10 0 0,0 164,184" fill="none" stroke="#3E4650" stroke-width="13"/>
+<path d="M92,184 A36,10 0 0,0 164,184" fill="none" stroke="url(#terere-mt)" stroke-width="8"/>
+<ellipse cx="128" cy="80" rx="48" ry="14" fill="#4E9A34" stroke="#3E4650" stroke-width="9"/>
+<ellipse cx="128" cy="80" rx="48" ry="14" fill="none" stroke="url(#terere-mt)" stroke-width="4"/>
+<use href="#terere-lf" transform="translate(150 76) rotate(-58) scale(.85)"/>
+<g stroke="#6FB8D2" stroke-width="3" fill="#E9FBFF">
+<rect x="94" y="54" width="26" height="26" rx="6" transform="rotate(-15 107 67)"/>
+<rect x="128" y="56" width="22" height="22" rx="5" transform="rotate(18 139 67)"/></g>
+<path d="M122,74 L100,32 L92,30" fill="none" stroke="#3E4650" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M122,74 L100,32 L92,30" fill="none" stroke="#DCE2E8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#FFFFFF" opacity=".7"><ellipse cx="98" cy="140" rx="3" ry="5"/><ellipse cx="158" cy="128" rx="3" ry="5"/><ellipse cx="108" cy="164" rx="2.5" ry="4"/></g>
+<circle cx="128" cy="128" r="128" fill="url(#terere-vg)"/>
+</svg>

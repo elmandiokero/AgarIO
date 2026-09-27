@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+<defs><radialGradient id="carpincho-b" ><stop offset="0" stop-color="#86D6CB"/><stop offset="1" stop-color="#1D6A6E"/></radialGradient><radialGradient id="carpincho-fur" cx="0.5" cy="0.35" r="0.7"><stop offset="0" stop-color="#CD9A62"/><stop offset="1" stop-color="#8A5A30"/></radialGradient><radialGradient id="carpincho-vg" cx="128" cy="128" r="128" gradientUnits="userSpaceOnUse"><stop offset="0.74" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.3"/></radialGradient></defs>
+<rect width="256" height="256" fill="url(#carpincho-b)"/>
+<g stroke="#2E7D32" stroke-width="6" stroke-linecap="round" fill="none"><path d="M22,230 Q30,170 20,120 M36,236 Q46,180 44,140 M234,230 Q226,170 236,120 M220,236 Q210,180 212,140"/></g>
+<g stroke="#3E2410" stroke-width="5"><circle cx="68" cy="68" r="22" fill="#7A4F2A"/><circle cx="188" cy="68" r="22" fill="#7A4F2A"/></g>
+<circle cx="68" cy="70" r="10" fill="#4A2E18"/><circle cx="188" cy="70" r="10" fill="#4A2E18"/>
+<path d="M128,38 C182,38 204,72 206,116 C208,170 196,216 128,224 C60,216 48,170 50,116 C52,72 74,38 128,38 Z" fill="url(#carpincho-fur)" stroke="#3E2410" stroke-width="5"/>
+<circle cx="128" cy="36" r="17" fill="#FF9800" stroke="#B85C00" stroke-width="3"/>
+<path d="M128,20 Q140,12 146,20 Q136,26 128,20 Z" fill="#43A047"/>
+<path d="M112,62 L116,74 M128,58 L128,72 M144,62 L140,74" stroke="#7A4F2A" stroke-width="4" stroke-linecap="round"/>
+<g fill="#241508"><ellipse cx="90" cy="108" rx="11" ry="9"/><ellipse cx="166" cy="108" rx="11" ry="9"/></g>
+<g fill="#A87444" stroke="#3E2410" stroke-width="3"><path d="M78,108 A12,10 0 0,1 102,108 Z"/><path d="M154,108 A12,10 0 0,1 178,108 Z"/></g>
+<g fill="#FFFFFF"><circle cx="93" cy="112" r="2.2"/><circle cx="169" cy="112" r="2.2"/></g>
+<path d="M76,152 C76,128 180,128 180,152 L178,190 C174,214 82,214 78,190 Z" fill="#9A6636" opacity=".55"/>
+<path d="M96,148 C96,132 160,132 160,148 C160,162 96,162 96,148 Z" fill="#5A3A24"/>
+<path d="M108,148 Q115,141 120,149 M136,149 Q141,141 148,148" fill="none" stroke="#1A0E06" stroke-width="5" stroke-linecap="round"/>
+<path d="M128,160 L128,176 M128,176 Q114,190 100,182 M128,176 Q142,190 156,182" fill="none" stroke="#3E2410" stroke-width="5" stroke-linecap="round"/>
+<g fill="#3E2410"><circle cx="90" cy="170" r="2.5"/><circle cx="98" cy="180" r="2.5"/><circle cx="166" cy="170" r="2.5"/><circle cx="158" cy="180" r="2.5"/></g>
+<g fill="#E07A5A" opacity=".35"><ellipse cx="70" cy="146" rx="12" ry="8"/><ellipse cx="186" cy="146" rx="12" ry="8"/></g>
+<circle cx="128" cy="128" r="128" fill="url(#carpincho-vg)"/>
+</svg>

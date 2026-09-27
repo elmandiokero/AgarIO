@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+<defs><radialGradient id="monai-b" ><stop offset="0" stop-color="#7A5632"/><stop offset="1" stop-color="#22150A"/></radialGradient><path id="monai-sp" d="M128,98L131.5,97.7L135.1,97.7L138.7,98.2L142.3,99.2L145.8,100.5L149.2,102.3L152.4,104.6L155.4,107.2L158.1,110.2L160.4,113.6L162.4,117.2L164,121.1L165.1,125.3L165.7,129.6L165.8,134L165.4,138.4L164.4,142.9L163,147.2L161,151.4L158.5,155.4L155.5,159.2L152,162.6L148.2,165.6L143.9,168.2L139.3,170.3L134.5,171.8L129.4,172.8L124.2,173.2L118.9,173L113.6,172.2L108.4,170.8L103.3,168.7L98.5,166L93.9,162.8L89.7,159L86,154.7L82.7,149.9L79.9,144.7L77.8,139.2L76.3,133.4L75.5,127.4L75.3,121.3L75.9,115.2L77.2,109.1L79.2,103.1L81.9,97.4L85.3,92L89.4,86.9L94,82.3L99.2,78.2L104.9,74.7L111.1,71.9L117.5,69.8L124.3,68.4L131.2,67.8L138.1,68.1L145.1,69.1L152,70.9L158.7,73.6L165,77L171,81.2L176.5,86.1L181.5,91.7L185.8,97.8L189.4,104.4L192.2,111.5L194.2,118.9L195.4,126.6L195.6,134.4L195,142.2L193.4,150L191,157.6L187.6,165L183.4,171.9L178.4,178.4L172.6,184.3L166.1,189.5L159,194L151.4,197.6L143.4,200.4L135,202.2L126.4,203.1L117.7,203L109,201.8L100.5,199.7L92.2,196.5L84.2,192.4L76.8,187.3L69.9,181.4L63.7,174.7L58.3,167.3L53.7,159.2L50.1,150.6L47.4,141.6L45.9,132.3L45.4,122.8L46,113.2L47.7,103.8L50.5,94.5L54.4,85.5L59.3,77L65.2,69.1L72.1,61.8"/><radialGradient id="monai-vg" cx="128" cy="128" r="128" gradientUnits="userSpaceOnUse"><stop offset="0.74" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.3"/></radialGradient></defs>
+<rect width="256" height="256" fill="url(#monai-b)"/>
+<g fill="#5A3E22" opacity=".6"><circle cx="30" cy="40" r="6"/><circle cx="224" cy="44" r="5"/><circle cx="36" cy="214" r="5"/><circle cx="222" cy="214" r="7"/></g>
+<polygon points="82.3,70.1 88.9,63.9 96.1,58.5 104.5,53.9 113.3,50.3 122.6,47.8 132.3,46.4 142.3,46.2 152.4,47.2 162.5,49.6 172.4,53.1 181.8,57.9 190.7,63.9 199.1,71.1 206.5,79.3 213,88.6 218.4,98.7 220.2,97.9 216,87 210.7,76.5 203.9,66.7 196.1,57.9 187.2,50.1 177.4,43.3 166.9,37.8 155.6,33.6 144.1,30.8 132.3,29.4 120.2,29.4 108.3,30.9 96.5,33.9 85.5,38.1 74.7,43.9 64.7,50.9" fill="#3FAE78" stroke="#0E3A24" stroke-width="3" stroke-linejoin="round"/>
+<use href="#monai-sp" fill="none" stroke="#0E3A24" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<use href="#monai-sp" fill="none" stroke="#3FAE78" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+<use href="#monai-sp" fill="none" stroke="#1E6B45" stroke-width="12" stroke-dasharray="10 14" stroke-linejoin="round"/>
+<use href="#monai-sp" fill="none" stroke="#9BE3B8" stroke-width="3" stroke-dasharray="4 20" stroke-dashoffset="-14" opacity=".8"/>
+<g fill="#F0E0B8" stroke="#5A4520" stroke-width="3" stroke-linejoin="round"><path d="M112,110 Q92,84 98,62 Q112,86 126,104 Z"/><path d="M144,110 Q164,84 158,62 Q144,86 130,104 Z"/></g>
+<path d="M128,164 L128,178 L122,186 M128,178 L134,186" fill="none" stroke="#E53935" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<ellipse cx="128" cy="132" rx="27" ry="33" fill="#3FAE78" stroke="#0E3A24" stroke-width="4"/>
+<path d="M112,112 Q128,104 144,112 L136,130 L120,130 Z" fill="#1E6B45"/>
+<g fill="#FFCF3A" stroke="#0E3A24" stroke-width="2.5"><ellipse cx="116" cy="136" rx="7" ry="8"/><ellipse cx="140" cy="136" rx="7" ry="8"/></g>
+<g fill="#111"><ellipse cx="116" cy="136" rx="2" ry="6"/><ellipse cx="140" cy="136" rx="2" ry="6"/></g>
+<g fill="#0E3A24"><circle cx="122" cy="156" r="2.5"/><circle cx="134" cy="156" r="2.5"/></g>
+<circle cx="128" cy="128" r="128" fill="url(#monai-vg)"/>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+<defs><radialGradient id="piri-b" ><stop offset="0" stop-color="#5E9E3A"/><stop offset="1" stop-color="#244A16"/></radialGradient><radialGradient id="piri-br" cx="128" cy="128" r="116" gradientUnits="userSpaceOnUse"><stop offset="0.45" stop-color="#C9A04A"/><stop offset="0.55" stop-color="#EBCB7A"/><stop offset="0.9" stop-color="#F2D891"/><stop offset="1" stop-color="#C9A04A"/></radialGradient><radialGradient id="piri-cr" cx="0.4" cy="0.35" r="0.7"><stop offset="0" stop-color="#F6DC8E"/><stop offset="0.7" stop-color="#DDB256"/><stop offset="1" stop-color="#B08432"/></radialGradient><radialGradient id="piri-vg" cx="128" cy="128" r="128" gradientUnits="userSpaceOnUse"><stop offset="0.74" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.3"/></radialGradient></defs>
+<rect width="256" height="256" fill="url(#piri-b)"/>
+<circle cx="133" cy="136" r="114" fill="#000" opacity=".28"/>
+<circle cx="128" cy="128" r="113" fill="url(#piri-br)" stroke="#7A5A20" stroke-width="5"/>
+<g fill="none" stroke="#A8823A" stroke-width="3.5" stroke-dasharray="8 5"><circle cx="128" cy="128" r="66" stroke-dashoffset="0"/><circle cx="128" cy="128" r="74" stroke-dashoffset="6"/><circle cx="128" cy="128" r="82" stroke-dashoffset="0"/><circle cx="128" cy="128" r="90" stroke-dashoffset="6"/><circle cx="128" cy="128" r="98" stroke-dashoffset="0"/><circle cx="128" cy="128" r="106" stroke-dashoffset="6"/></g>
+<circle cx="132" cy="132" r="60" fill="#5A3E12" opacity=".35"/>
+<circle cx="128" cy="128" r="57" fill="#1F1712"/>
+<circle cx="128" cy="128" r="48" fill="url(#piri-cr)" stroke="#8A6A2A" stroke-width="3"/>
+<g fill="none" stroke="#C49A48" stroke-width="3" stroke-dasharray="6 4" opacity=".85"><circle cx="128" cy="128" r="14" stroke-dashoffset="0"/><circle cx="128" cy="128" r="21" stroke-dashoffset="5"/><circle cx="128" cy="128" r="28" stroke-dashoffset="0"/><circle cx="128" cy="128" r="35" stroke-dashoffset="5"/><circle cx="128" cy="128" r="42" stroke-dashoffset="0"/></g>
+<circle cx="128" cy="128" r="5" fill="#B58A36"/>
+<path d="M166,168 L174,196 L182,192 Z M166,168 L186,186 L190,178 Z" fill="#0038A8"/>
+<circle cx="166" cy="168" r="12" fill="#D52B1E"/><circle cx="166" cy="168" r="7.5" fill="#FFFFFF"/><circle cx="166" cy="168" r="3.5" fill="#0038A8"/>
+<circle cx="128" cy="128" r="128" fill="url(#piri-vg)"/>
+</svg>

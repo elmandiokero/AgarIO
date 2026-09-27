@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+<defs><radialGradient id="bandera-vg" cx="128" cy="128" r="128" gradientUnits="userSpaceOnUse"><stop offset="0.74" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.3"/></radialGradient></defs>
+<rect width="256" height="256" fill="#F3F1EA"/>
+<rect width="256" height="86" fill="#D52B1E"/>
+<rect y="170" width="256" height="86" fill="#0038A8"/>
+<circle cx="128" cy="128" r="33" fill="#FFFFFF" stroke="#2E8B3E" stroke-width="9"/>
+<circle cx="128" cy="128" r="26.5" fill="none" stroke="#D52B1E" stroke-width="2"/>
+<polygon points="128,110 132.7,123.5 147,123.8 135.6,132.5 139.8,146.2 128,138 116.2,146.2 120.4,132.5 109,123.8 123.3,123.5" fill="#FCD116" stroke="#B8900A" stroke-width="2.5" stroke-linejoin="round"/>
+<circle cx="128" cy="128" r="128" fill="url(#bandera-vg)"/>
+</svg>

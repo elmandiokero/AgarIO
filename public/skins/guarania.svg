@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+<defs><radialGradient id="guarania-b" cx="128" cy="128" r="181" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2757BC"/><stop offset="1" stop-color="#0A1644"/></radialGradient><linearGradient id="guarania-wd" x1="-50" y1="-60" x2="50" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#F0A84E"/><stop offset="1" stop-color="#B0621E"/></linearGradient><radialGradient id="guarania-vg" cx="128" cy="128" r="128" gradientUnits="userSpaceOnUse"><stop offset="0.74" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.3"/></radialGradient></defs>
+<rect width="256" height="256" fill="url(#guarania-b)"/>
+<g fill="#FFF7C2"><circle cx="40" cy="120" r="2.5"/><circle cx="96" cy="30" r="2"/><circle cx="222" cy="120" r="2.5"/><circle cx="160" cy="230" r="2"/><circle cx="60" cy="46" r="2"/><circle cx="230" cy="190" r="2"/></g>
+<circle cx="80" cy="70" r="24" fill="#FFF3B0"/>
+<circle cx="92" cy="62" r="21" fill="url(#guarania-b)"/>
+<g transform="translate(128 128) rotate(35) scale(.72) translate(0 42)">
+<rect x="-9" y="-152" width="18" height="110" fill="#6B3A14" stroke="#3A1A05" stroke-width="3"/>
+<path d="M-9,-140 L9,-140 M-9,-126 L9,-126 M-9,-112 L9,-112 M-9,-98 L9,-98 M-9,-84 L9,-84 M-9,-70 L9,-70" stroke="#D9C08A" stroke-width="2"/>
+<path d="M-12,-150 L12,-150 L15,-186 L-15,-186 Z" fill="#3A1A05"/>
+<g fill="#D9C08A"><circle cx="-19" cy="-162" r="4"/><circle cx="-19" cy="-176" r="4"/><circle cx="19" cy="-162" r="4"/><circle cx="19" cy="-176" r="4"/></g>
+<g stroke="#3A1A05" stroke-width="10"><circle cx="0" cy="50" r="50"/><circle cx="0" cy="-22" r="38"/></g>
+<g fill="url(#guarania-wd)"><circle cx="0" cy="50" r="50"/><circle cx="0" cy="-22" r="38"/></g>
+<circle cx="0" cy="8" r="17" fill="#2A1405" stroke="#F5D08A" stroke-width="4"/>
+<rect x="-20" y="60" width="40" height="9" rx="3" fill="#3A1A05"/>
+<path d="M-6,64 L-6,-182 M-2,64 L-2,-182 M2,64 L2,-182 M6,64 L6,-182" stroke="#F5F0E0" stroke-width="1.4"/></g>
+<g transform="translate(56 164) rotate(-8) scale(1)" fill="#FFD54A" stroke="#FFD54A"><ellipse rx="11" ry="8" transform="rotate(-20)" stroke="none"/><path d="M9,-3 L9,-46" stroke-width="4" fill="none"/><path d="M9,-46 C22,-38 28,-26 20,-14" stroke-width="5" fill="none" stroke-linecap="round"/></g>
+<g transform="translate(170 186) rotate(-8) scale(0.95)" fill="#FFD54A" stroke="#FFD54A"><ellipse rx="11" ry="8" transform="rotate(-20)" stroke="none"/><ellipse cx="34" cy="-6" rx="11" ry="8" transform="rotate(-20 34 -6)" stroke="none"/><path d="M9,-3 L9,-46 M43,-9 L43,-52" stroke-width="4" fill="none"/><path d="M9,-46 L43,-52" stroke-width="8" fill="none"/></g>
+<g transform="translate(200 128) rotate(-8) scale(0.7)" fill="#9FD8FF" stroke="#9FD8FF"><ellipse rx="11" ry="8" transform="rotate(-20)" stroke="none"/><path d="M9,-3 L9,-46" stroke-width="4" fill="none"/><path d="M9,-46 C22,-38 28,-26 20,-14" stroke-width="5" fill="none" stroke-linecap="round"/></g>
+<circle cx="128" cy="128" r="128" fill="url(#guarania-vg)"/>
+</svg>

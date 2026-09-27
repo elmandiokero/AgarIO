@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+<defs><radialGradient id="tatu-b" ><stop offset="0" stop-color="#A5D46E"/><stop offset="1" stop-color="#356A26"/></radialGradient><radialGradient id="tatu-sh" cx="0.45" cy="0.3" r="0.8"><stop offset="0" stop-color="#C8B49C"/><stop offset="1" stop-color="#7A6652"/></radialGradient><clipPath id="tatu-sc"><path d="M50,172 C48,100 100,62 140,62 C190,62 216,110 214,172 Z"/></clipPath><radialGradient id="tatu-vg" cx="128" cy="128" r="128" gradientUnits="userSpaceOnUse"><stop offset="0.74" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.3"/></radialGradient></defs>
+<rect width="256" height="256" fill="url(#tatu-b)"/>
+<ellipse cx="132" cy="196" rx="100" ry="13" fill="#000" opacity=".2"/>
+<g transform="translate(128 128) scale(.92) translate(-128 -122)">
+<path d="M198,160 C220,168 236,186 244,208 C226,194 212,186 194,180 Z" fill="#A58C74" stroke="#4E3F31" stroke-width="4" stroke-linejoin="round"/>
+<g fill="#B09078" stroke="#4E3F31" stroke-width="4"><rect x="72" y="158" width="22" height="34" rx="9"/><rect x="170" y="158" width="22" height="34" rx="9"/></g>
+<path d="M50,172 C48,100 100,62 140,62 C190,62 216,110 214,172 Z" fill="url(#tatu-sh)"/>
+<g clip-path="url(#tatu-sc)" fill="none" stroke="#5E4C3C" stroke-width="6">
+<path d="M104,56 Q94,120 100,180 M122,54 Q116,120 120,180 M140,54 Q140,120 140,180 M158,54 Q164,120 160,180 M176,58 Q186,120 180,180"/>
+<path d="M40,160 L224,160" stroke-width="4" stroke-dasharray="10 6"/></g>
+<path d="M50,172 C48,100 100,62 140,62 C190,62 216,110 214,172 Z" fill="none" stroke="#4E3F31" stroke-width="5" stroke-linejoin="round"/>
+<ellipse cx="74" cy="118" rx="9" ry="17" transform="rotate(-15 74 118)" fill="#C9A488" stroke="#4E3F31" stroke-width="4"/>
+<ellipse cx="74" cy="119" rx="3.5" ry="10" transform="rotate(-15 74 118)" fill="#9E785C"/>
+<path d="M78,128 C56,122 42,138 34,156 L16,184 Q14,192 24,190 L64,178 C80,172 92,158 86,140 Z" fill="#C9A488" stroke="#4E3F31" stroke-width="4" stroke-linejoin="round"/>
+<path d="M80,131 C62,128 50,140 44,152 C58,146 72,146 86,146 Z" fill="#9C8670"/>
+<circle cx="58" cy="152" r="5.5" fill="#1A1A1A"/><circle cx="56.5" cy="150.5" r="1.8" fill="#FFFFFF"/>
+<circle cx="21" cy="186" r="4" fill="#5A3A2A"/></g>
+<circle cx="128" cy="128" r="128" fill="url(#tatu-vg)"/>
+</svg>

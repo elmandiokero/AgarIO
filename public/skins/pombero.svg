@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+<defs><radialGradient id="pombero-b" ><stop offset="0" stop-color="#5E4FA8"/><stop offset="0.6" stop-color="#2A2266"/><stop offset="1" stop-color="#0E0B2A"/></radialGradient><linearGradient id="pombero-hat" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F4D27A"/><stop offset="1" stop-color="#C99A34"/></linearGradient><radialGradient id="pombero-vg" cx="128" cy="128" r="128" gradientUnits="userSpaceOnUse"><stop offset="0.74" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.3"/></radialGradient></defs>
+<rect width="256" height="256" fill="url(#pombero-b)"/>
+<g fill="#FFF7C2"><circle cx="40" cy="70" r="2.5"/><circle cx="214" cy="60" r="3"/><circle cx="222" cy="150" r="2"/><circle cx="34" cy="160" r="2"/><circle cx="60" cy="36" r="2"/></g>
+<polygon points="128,68 137.6,85.2 151.5,71.8 156.9,88.7 174,80.5 172.9,100.2 192.4,96.2 189.4,112.5 204,117.3 197.4,131.6 211.7,140 194.9,152 210.2,163.8 198,172.6 208.4,188.7 185.6,189 195.6,210.5 174.5,205.7 175.2,225.4 156.3,214 151.2,231 137.8,220.2 128,237.8 117.7,223.3 103.8,234.3 98.8,216 81.2,224.8 81,206.2 63.2,208.1 71.8,188.1 48.4,188.3 62.5,171.2 42.1,164.4 61.1,152 44.2,139.9 64.7,133.4 49.1,115.9 69.6,114.4 60.9,93.9 81.4,98.2 81,78.9 98,86.4 104.1,70.7 118,82.7" fill="#3B2618" stroke="#140B05" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="128,88.4 137,104.9 150.4,94.4 153.5,111.8 170.6,105.2 171.5,119.5 183.5,124 177.1,138.1 195.7,144.1 184.2,156 194.1,167.7 177.3,174 186.1,189.6 168.6,190.1 170.3,206.4 153.6,200.3 151.1,219.4 137.5,209.7 128,219.8 118.4,210.5 105.9,216.8 102.2,200.7 85.4,206.8 86.1,191.2 71,188.9 78.8,173.9 60.3,167.9 72.8,156 61.7,144.3 78.5,138 73.3,124.4 85.2,120.1 84.7,104.4 101.7,110.5 106.3,96.5 118.8,104" fill="#553722" stroke-linejoin="round"/>
+<ellipse cx="128" cy="164" rx="44" ry="38" fill="#6A4630"/>
+<g fill="#F7FF8A" opacity=".3"><circle cx="106" cy="148" r="22"/><circle cx="150" cy="148" r="22"/></g>
+<g fill="#EEFF55" stroke="#140B05" stroke-width="3"><circle cx="106" cy="148" r="13"/><circle cx="150" cy="148" r="13"/></g>
+<g fill="#140B05"><ellipse cx="108" cy="148" rx="3.5" ry="8"/><ellipse cx="152" cy="148" rx="3.5" ry="8"/></g>
+<ellipse cx="128" cy="168" rx="8" ry="6" fill="#3B2618"/>
+<path d="M104,182 Q128,202 152,182 Q128,192 104,182 Z" fill="#1C0F08" stroke="#140B05" stroke-width="3" stroke-linejoin="round"/>
+<g fill="#F3EAD0"><polygon points="112,186 118,187 115,194"/><polygon points="144,186 138,187 141,194"/></g>
+<ellipse cx="128" cy="96" rx="94" ry="22" fill="url(#pombero-hat)" stroke="#7A5A1C" stroke-width="5"/>
+<ellipse cx="128" cy="96" rx="80" ry="15" fill="none" stroke="#B8903A" stroke-width="3" stroke-dasharray="7 5"/>
+<path d="M78,96 C80,46 176,46 178,96 Q128,108 78,96 Z" fill="url(#pombero-hat)" stroke="#7A5A1C" stroke-width="5" stroke-linejoin="round"/>
+<path d="M81,84 Q128,96 175,84" fill="none" stroke="#B3302A" stroke-width="9"/>
+<path d="M100,64 Q128,58 156,64" fill="none" stroke="#B8903A" stroke-width="3" stroke-dasharray="6 5"/>
+<circle cx="128" cy="128" r="128" fill="url(#pombero-vg)"/>
+</svg>

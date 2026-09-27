@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+<defs><radialGradient id="kurupi-b" ><stop offset="0" stop-color="#2E6B3A"/><stop offset="1" stop-color="#0C2614"/></radialGradient><radialGradient id="kurupi-kf" cx="0.5" cy="0.4" r="0.65"><stop offset="0" stop-color="#D08452"/><stop offset="1" stop-color="#8A4526"/></radialGradient><radialGradient id="kurupi-vg" cx="128" cy="128" r="128" gradientUnits="userSpaceOnUse"><stop offset="0.74" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.3"/></radialGradient></defs>
+<rect width="256" height="256" fill="url(#kurupi-b)"/>
+<g fill="#1B4D28"><ellipse cx="30" cy="206" rx="36" ry="15" transform="rotate(-40 30 206)"/><ellipse cx="226" cy="206" rx="36" ry="15" transform="rotate(40 226 206)"/><ellipse cx="40" cy="40" rx="30" ry="12" transform="rotate(40 40 40)"/><ellipse cx="216" cy="40" rx="30" ry="12" transform="rotate(-40 216 40)"/></g>
+<g fill="#EFE3C8" stroke="#5A4A30" stroke-width="4" stroke-linejoin="round"><path d="M92,86 C78,68 70,52 74,34 C88,48 102,62 114,76 Z"/><path d="M164,86 C178,68 186,52 182,34 C168,48 154,62 142,76 Z"/></g>
+<g fill="#B8663C" stroke="#3A1A0C" stroke-width="5" stroke-linejoin="round"><path d="M66,126 L26,104 L66,158 Z"/><path d="M190,126 L230,104 L190,158 Z"/></g>
+<ellipse cx="128" cy="144" rx="68" ry="74" fill="url(#kurupi-kf)" stroke="#3A1A0C" stroke-width="5"/>
+<path d="M100,80 L110,56 L120,74 L128,52 L136,74 L146,56 L156,80 Q128,70 100,80 Z" fill="#3A2414" stroke="#1E1008" stroke-width="3" stroke-linejoin="round"/>
+<g stroke="#2A140A" stroke-width="9" stroke-linecap="round"><path d="M84,114 L118,126"/><path d="M172,106 L140,124"/></g>
+<g fill="#FFE35A" stroke="#2A140A" stroke-width="4"><ellipse cx="104" cy="138" rx="13" ry="10"/><ellipse cx="152" cy="136" rx="13" ry="11"/></g>
+<g fill="#2A140A"><circle cx="110" cy="139" r="5"/><circle cx="158" cy="137" r="5"/></g>
+<path d="M126,138 Q148,160 138,172 Q128,176 118,168 Z" fill="#A04E2E" stroke="#5A2A14" stroke-width="3" stroke-linejoin="round"/>
+<path d="M90,186 Q124,206 168,178 L176,170" fill="none" stroke="#2A140A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="138,192 150,188 146,201" fill="#FFF6DE" stroke="#2A140A" stroke-width="2" stroke-linejoin="round"/>
+<path d="M116,212 L128,226 L140,212 Z" fill="#3A2414"/>
+<circle cx="128" cy="128" r="128" fill="url(#kurupi-vg)"/>
+</svg>

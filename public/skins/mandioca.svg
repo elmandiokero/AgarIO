@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+<defs><radialGradient id="mandioca-b" ><stop offset="0" stop-color="#5DB04E"/><stop offset="1" stop-color="#1E5A22"/></radialGradient><linearGradient id="mandioca-sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A8723C"/><stop offset="1" stop-color="#6A3E1C"/></linearGradient><g id="mandioca-rt"><path d="M0,-24 C50,-30 120,-20 176,-3 Q183,0 176,3 C120,20 50,30 0,24 Z" fill="url(#mandioca-sk)" stroke="#43260E" stroke-width="4"/>
+<path d="M42,-25 Q48,0 42,26 M88,-21 Q94,0 88,21 M132,-13 Q137,0 132,13" fill="none" stroke="#4E2E12" stroke-width="3" opacity=".7"/>
+<ellipse rx="12" ry="24" fill="#FFF6DF" stroke="#43260E" stroke-width="4"/>
+<ellipse rx="6" ry="15" fill="none" stroke="#E6D09A" stroke-width="3"/></g><radialGradient id="mandioca-vg" cx="128" cy="128" r="128" gradientUnits="userSpaceOnUse"><stop offset="0.74" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.3"/></radialGradient></defs>
+<rect width="256" height="256" fill="url(#mandioca-b)"/>
+<g transform="translate(66 74) rotate(-20) scale(1)" fill="#2F8A3A" stroke="#1B4F1B" stroke-width="3"><ellipse cx="0" cy="-30" rx="9" ry="30" transform="rotate(-72)"/><ellipse cx="0" cy="-30" rx="9" ry="30" transform="rotate(-48)"/><ellipse cx="0" cy="-30" rx="9" ry="30" transform="rotate(-24)"/><ellipse cx="0" cy="-30" rx="9" ry="30" transform="rotate(0)"/><ellipse cx="0" cy="-30" rx="9" ry="30" transform="rotate(24)"/><ellipse cx="0" cy="-30" rx="9" ry="30" transform="rotate(48)"/><ellipse cx="0" cy="-30" rx="9" ry="30" transform="rotate(72)"/></g>
+<g transform="translate(200 196) rotate(150) scale(0.8)" fill="#2F8A3A" stroke="#1B4F1B" stroke-width="3"><ellipse cx="0" cy="-30" rx="9" ry="30" transform="rotate(-72)"/><ellipse cx="0" cy="-30" rx="9" ry="30" transform="rotate(-48)"/><ellipse cx="0" cy="-30" rx="9" ry="30" transform="rotate(-24)"/><ellipse cx="0" cy="-30" rx="9" ry="30" transform="rotate(0)"/><ellipse cx="0" cy="-30" rx="9" ry="30" transform="rotate(24)"/><ellipse cx="0" cy="-30" rx="9" ry="30" transform="rotate(48)"/><ellipse cx="0" cy="-30" rx="9" ry="30" transform="rotate(72)"/></g>
+<use href="#mandioca-rt" transform="translate(62 200) rotate(-72)"/>
+<use href="#mandioca-rt" transform="translate(40 176) rotate(-22)"/>
+<use href="#mandioca-rt" transform="translate(50 192) rotate(-46)"/>
+<g transform="translate(170 176) rotate(-20)">
+<rect x="-6" y="-30" width="50" height="60" rx="14" fill="url(#mandioca-sk)" stroke="#43260E" stroke-width="4"/>
+<ellipse rx="27" ry="31" fill="#FFF6DF" stroke="#6A3E1C" stroke-width="7"/>
+<ellipse rx="15" ry="18" fill="none" stroke="#E6D09A" stroke-width="3"/>
+<circle r="3.5" fill="#D2B67A"/></g>
+<circle cx="128" cy="128" r="128" fill="url(#mandioca-vg)"/>
+</svg>

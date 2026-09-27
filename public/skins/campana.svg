@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+<defs><radialGradient id="campana-b" ><stop offset="0" stop-color="#3F9A4A"/><stop offset="1" stop-color="#0C3518"/></radialGradient><radialGradient id="campana-wb" cx="0.4" cy="0.35" r="0.75"><stop offset="0" stop-color="#F7F8F4"/><stop offset="0.6" stop-color="#E0E6DC"/><stop offset="1" stop-color="#AEB8AB"/></radialGradient><radialGradient id="campana-vg" cx="128" cy="128" r="128" gradientUnits="userSpaceOnUse"><stop offset="0.74" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.3"/></radialGradient></defs>
+<rect width="256" height="256" fill="url(#campana-b)"/>
+<g fill="#1F6B2C"><ellipse cx="40" cy="60" rx="34" ry="16" transform="rotate(-30 40 60)"/><ellipse cx="220" cy="80" rx="34" ry="16" transform="rotate(30 220 80)"/><ellipse cx="200" cy="32" rx="30" ry="14" transform="rotate(-20 200 32)"/><ellipse cx="36" cy="150" rx="28" ry="13" transform="rotate(20 36 150)"/></g>
+<g fill="#5DBB63" opacity=".5"><ellipse cx="68" cy="30" rx="24" ry="10" transform="rotate(20 68 30)"/><ellipse cx="232" cy="130" rx="22" ry="10" transform="rotate(-50 232 130)"/></g>
+<path d="M34,210 C90,196 160,196 230,178" fill="none" stroke="#6B4226" stroke-width="15" stroke-linecap="round"/>
+<path d="M190,188 L214,212" stroke="#6B4226" stroke-width="8" stroke-linecap="round"/>
+<polygon points="170,160 222,200 206,214 156,178" fill="#D9DED6" stroke="#7F8A80" stroke-width="3" stroke-linejoin="round"/>
+<ellipse cx="146" cy="148" rx="58" ry="46" transform="rotate(-25 146 148)" fill="url(#campana-wb)" stroke="#7F8A80" stroke-width="3"/>
+<ellipse cx="162" cy="150" rx="38" ry="23" transform="rotate(-32 162 150)" fill="#DDE2DA" stroke="#9AA39A" stroke-width="3"/>
+<path d="M150,160 Q170,150 190,140 M154,170 Q176,160 194,150" fill="none" stroke="#AAB3A8" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#3A2A1A" stroke-width="5" stroke-linecap="round"><path d="M126,188 L122,202 M146,190 L144,202"/></g>
+<circle cx="98" cy="100" r="36" fill="url(#campana-wb)" stroke="#7F8A80" stroke-width="3"/>
+<ellipse cx="94" cy="126" rx="24" ry="19" fill="#2FB592" stroke="#1C7A62" stroke-width="3"/>
+<g stroke="#155C4A" stroke-width="2.5" stroke-linecap="round"><path d="M84,118 L82,128 M94,120 L94,132 M104,118 L106,128 M88,132 L87,140 M100,132 L101,140"/></g>
+<polygon points="70,90 38,80 68,100" fill="#2B2B2B" stroke="#2B2B2B" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="68,106 42,116 72,112" fill="#2B2B2B" stroke="#2B2B2B" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="94" cy="92" r="6.5" fill="#111"/><circle cx="92" cy="90" r="2" fill="#FFFFFF"/>
+<g fill="none" stroke="#FFF7C2" stroke-width="5" stroke-linecap="round" opacity=".85"><path d="M30,96 Q24,106 30,116 M20,88 Q10,106 20,124"/></g>
+<circle cx="128" cy="128" r="128" fill="url(#campana-vg)"/>
+</svg>

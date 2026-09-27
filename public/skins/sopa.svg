@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+<defs><radialGradient id="sopa-b" ><stop offset="0" stop-color="#4F86CF"/><stop offset="1" stop-color="#1E3F73"/></radialGradient><radialGradient id="sopa-cl" ><stop offset="0" stop-color="#D9784A"/><stop offset="0.85" stop-color="#B4502C"/><stop offset="1" stop-color="#8E3A1C"/></radialGradient><radialGradient id="sopa-ci" ><stop offset="0" stop-color="#A94A28"/><stop offset="0.8" stop-color="#C2603A"/><stop offset="1" stop-color="#8A3418"/></radialGradient><radialGradient id="sopa-tp" cx="0.45" cy="0.45" r="0.6"><stop offset="0" stop-color="#F7C24E"/><stop offset="0.7" stop-color="#E6A43A"/><stop offset="1" stop-color="#BE741E"/></radialGradient><radialGradient id="sopa-vg" cx="128" cy="128" r="128" gradientUnits="userSpaceOnUse"><stop offset="0.74" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.3"/></radialGradient></defs>
+<rect width="256" height="256" fill="url(#sopa-b)"/>
+<circle cx="132" cy="136" r="110" fill="#10213F" opacity=".45"/>
+<circle cx="128" cy="128" r="108" fill="url(#sopa-cl)" stroke="#6A2810" stroke-width="4"/>
+<circle cx="128" cy="128" r="88" fill="url(#sopa-ci)" stroke="#7A2E14" stroke-width="3"/>
+<g stroke="#8A4A10" stroke-width="4" stroke-linejoin="round">
+<polygon points="184,64 194,150 194,182 184,96" fill="#D89A30"/>
+<polygon points="72,160 194,150 194,182 72,192" fill="#F7D35C"/>
+<polygon points="62,74 184,64 194,150 72,160" fill="url(#sopa-tp)"/></g>
+<g fill="#A55A14" opacity=".45"><ellipse cx="104" cy="97.7" rx="6.1" ry="3.2"/><ellipse cx="151.5" cy="134.2" rx="4.5" ry="5.2"/><ellipse cx="90.4" cy="93.7" rx="8.7" ry="3.8"/><ellipse cx="115.9" cy="102.7" rx="7.1" ry="4.9"/><ellipse cx="119.2" cy="110.6" rx="8" ry="4.2"/><ellipse cx="92.7" cy="126.9" rx="8.6" ry="3.1"/><ellipse cx="110.4" cy="88" rx="7.5" ry="3.2"/><ellipse cx="116.1" cy="139.1" rx="8.8" ry="5.2"/><ellipse cx="176.7" cy="83" rx="6.2" ry="5.3"/><ellipse cx="83.2" cy="93.7" rx="9.2" ry="3.5"/><ellipse cx="108.3" cy="135.8" rx="8.5" ry="5.8"/><ellipse cx="152.5" cy="89.9" rx="6.8" ry="4.8"/></g>
+<g fill="#FFE9A0" opacity=".8"><circle cx="104" cy="96" r="5"/><circle cx="150" cy="120" r="4"/><circle cx="120" cy="136" r="3.5"/><circle cx="160" cy="88" r="3.5"/></g>
+<g fill="#D9962E"><circle cx="143.4" cy="175.1" r="2.3"/><circle cx="148.2" cy="176" r="1.9"/><circle cx="162.9" cy="169" r="1.9"/><circle cx="156" cy="174.8" r="3"/><circle cx="113.1" cy="187.9" r="2.1"/><circle cx="101.1" cy="166.9" r="2.8"/><circle cx="112.9" cy="173.1" r="3.3"/><circle cx="137.2" cy="170.5" r="2.9"/><circle cx="104.3" cy="179.6" r="2.6"/><circle cx="99.5" cy="167.5" r="3.2"/><circle cx="186.1" cy="166.6" r="2.3"/><circle cx="122.3" cy="183.5" r="2.5"/></g>
+<circle cx="128" cy="128" r="128" fill="url(#sopa-vg)"/>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+<defs><radialGradient id="corona-b" ><stop offset="0" stop-color="#D83434"/><stop offset="0.7" stop-color="#9A1414"/><stop offset="1" stop-color="#4A0808"/></radialGradient><linearGradient id="corona-gd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF1A6"/><stop offset="0.45" stop-color="#F5C518"/><stop offset="1" stop-color="#B8860B"/></linearGradient><radialGradient id="corona-vg" cx="128" cy="128" r="128" gradientUnits="userSpaceOnUse"><stop offset="0.74" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.3"/></radialGradient></defs>
+<rect width="256" height="256" fill="url(#corona-b)"/>
+<g fill="none" stroke="#FFFFFF" stroke-opacity=".08" stroke-width="14"><path d="M-10,60 Q128,20 266,70 M-10,230 Q128,190 266,236"/></g>
+<g fill="none" stroke="#000" stroke-opacity=".15" stroke-width="12"><path d="M-10,90 Q128,50 266,100"/></g>
+<ellipse cx="128" cy="192" rx="98" ry="34" fill="#B71C1C" stroke="#5A0A0A" stroke-width="4"/>
+<ellipse cx="128" cy="192" rx="88" ry="27" fill="none" stroke="#F5C518" stroke-width="3" stroke-dasharray="6 5"/>
+<ellipse cx="128" cy="184" rx="70" ry="12" fill="#5A0A0A" opacity=".45"/>
+<path d="M58,178 L48,92 L90,130 L128,68 L166,130 L208,92 L198,178 Z" fill="url(#corona-gd)" stroke="#6A4800" stroke-width="5" stroke-linejoin="round"/>
+<rect x="56" y="150" width="144" height="30" rx="5" fill="#E0A800" stroke="#6A4800" stroke-width="4"/>
+<g stroke="#6A4800" stroke-width="3"><circle cx="48" cy="88" r="10" fill="#FFE27A"/><circle cx="128" cy="62" r="12" fill="#FFE27A"/><circle cx="208" cy="88" r="10" fill="#FFE27A"/>
+<circle cx="92" cy="165" r="8" fill="#E53935"/><circle cx="128" cy="165" r="10" fill="#1E88E5"/><circle cx="164" cy="165" r="8" fill="#43A047"/></g>
+<polygon points="128,106 140,122 128,138 116,122" fill="#E53935" stroke="#6A4800" stroke-width="3" stroke-linejoin="round"/>
+<g fill="#FFFFFF" opacity=".85"><circle cx="89" cy="162" r="2.5"/><circle cx="124" cy="161" r="3"/><circle cx="161" cy="162" r="2.5"/><circle cx="125" cy="116" r="2.5"/><circle cx="124" cy="58" r="3.5"/></g>
+<path d="M70,160 L190,160" stroke="#FFF1A6" stroke-width="3" opacity=".7"/>
+<circle cx="128" cy="128" r="128" fill="url(#corona-vg)"/>
+</svg>

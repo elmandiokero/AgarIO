@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+<defs><radialGradient id="pelota-b" cx="0.4" cy="0.36" r="0.75"><stop offset="0" stop-color="#FFFFFF"/><stop offset="0.6" stop-color="#F0F0F0"/><stop offset="1" stop-color="#B8B8B8"/></radialGradient><radialGradient id="pelota-vg" cx="128" cy="128" r="128" gradientUnits="userSpaceOnUse"><stop offset="0.74" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.3"/></radialGradient></defs>
+<rect width="256" height="256" fill="url(#pelota-b)"/>
+<path d="M128,95.7L128,57.7M158.7,118L194.9,106.3M147,154.2L169.3,184.8M109,154.2L86.7,184.8M97.3,118L61.1,106.3M158.7,35.4L206.6,70.1M109,-0.8L73.7,-49.3M147,-0.8L182.3,-49.3M225.6,128.6L207.3,184.8M244.6,70.1L279.9,21.6M256.3,106.3L313.4,124.8M157.6,221L98.4,221M219,221L276.1,239.5M188.3,243.3L188.3,303.3M48.7,184.8L30.4,128.6M67.7,243.3L67.7,303.3M37,221L-20.1,239.5M49.4,70.1L97.3,35.4M-0.3,106.3L-57.4,124.8M11.4,70.1L-23.9,21.6" stroke="#1E1E1E" stroke-width="5" stroke-linecap="round" fill="none"/>
+<g fill="#1E1E1E" stroke="#1E1E1E" stroke-width="4" stroke-linejoin="round"><polygon points="128,95.7 158.7,118 147,154.2 109,154.2 97.3,118"/><polygon points="128,57.7 97.3,35.4 109,-0.8 147,-0.8 158.7,35.4"/><polygon points="194.9,106.3 206.6,70.1 244.6,70.1 256.3,106.3 225.6,128.6"/><polygon points="169.3,184.8 207.3,184.8 219,221 188.3,243.3 157.6,221"/><polygon points="86.7,184.8 98.4,221 67.7,243.3 37,221 48.7,184.8"/><polygon points="61.1,106.3 30.4,128.6 -0.3,106.3 11.4,70.1 49.4,70.1"/></g>
+<ellipse cx="92" cy="80" rx="30" ry="16" fill="#FFFFFF" opacity=".3" transform="rotate(-35 92 80)"/>
+<circle cx="128" cy="128" r="128" fill="url(#pelota-vg)"/>
+</svg>

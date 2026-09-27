@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+<defs><radialGradient id="jaguarete-b" ><stop offset="0" stop-color="#3F8F3A"/><stop offset="1" stop-color="#0F3714"/></radialGradient><radialGradient id="jaguarete-jg" cx="0.5" cy="0.4" r="0.65"><stop offset="0" stop-color="#F6BE55"/><stop offset="1" stop-color="#D2801E"/></radialGradient><radialGradient id="jaguarete-vg" cx="128" cy="128" r="128" gradientUnits="userSpaceOnUse"><stop offset="0.74" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.3"/></radialGradient></defs>
+<rect width="256" height="256" fill="url(#jaguarete-b)"/>
+<g fill="#1F5E24"><ellipse cx="30" cy="222" rx="34" ry="14" transform="rotate(-40 30 222)"/><ellipse cx="226" cy="222" rx="34" ry="14" transform="rotate(40 226 222)"/></g>
+<g stroke="#2B1A0C" stroke-width="5"><circle cx="64" cy="66" r="28" fill="#D98C28"/><circle cx="192" cy="66" r="28" fill="#D98C28"/></g>
+<g fill="#F3DCB4"><circle cx="66" cy="70" r="14"/><circle cx="190" cy="70" r="14"/></g>
+<path d="M128,42 C196,42 222,90 220,134 C218,188 180,226 128,228 C76,226 38,188 36,134 C34,90 60,42 128,42 Z" fill="url(#jaguarete-jg)" stroke="#2B1A0C" stroke-width="5"/>
+<g fill="#C06E14" stroke="#2B1A0C" stroke-width="6" stroke-dasharray="12 5"><circle cx="62" cy="140" r="11"/><circle cx="194" cy="140" r="11"/><circle cx="76" cy="184" r="11"/><circle cx="180" cy="184" r="11"/><circle cx="80" cy="90" r="11"/><circle cx="176" cy="90" r="11"/><circle cx="100" cy="204" r="11"/><circle cx="156" cy="204" r="11"/></g>
+<g fill="#2B1A0C"><circle cx="112" cy="74" r="5"/><circle cx="128" cy="66" r="5.5"/><circle cx="144" cy="74" r="5"/><circle cx="118" cy="90" r="4.5"/><circle cx="138" cy="90" r="4.5"/><circle cx="128" cy="104" r="4"/><circle cx="46" cy="116" r="4"/><circle cx="210" cy="116" r="4"/></g>
+<g fill="#F6E6C8"><path d="M74,110 Q92,98 110,108 L106,114 Q92,106 78,116 Z"/><path d="M182,110 Q164,98 146,108 L150,114 Q164,106 178,116 Z"/></g>
+<g fill="#D4E157" stroke="#2B1A0C" stroke-width="4"><ellipse cx="94" cy="126" rx="16" ry="12"/><ellipse cx="162" cy="126" rx="16" ry="12"/></g>
+<g fill="#111"><ellipse cx="94" cy="126" rx="5" ry="9"/><ellipse cx="162" cy="126" rx="5" ry="9"/></g>
+<g fill="#F6E6C8"><circle cx="108" cy="174" r="27"/><circle cx="148" cy="174" r="27"/><ellipse cx="128" cy="200" rx="24" ry="15"/></g>
+<path d="M112,152 L144,152 Q146,156 142,160 L131,170 Q128,172 125,170 L114,160 Q110,156 112,152 Z" fill="#7A3B2E" stroke="#2B1A0C" stroke-width="3" stroke-linejoin="round"/>
+<path d="M128,170 L128,182 M128,182 Q116,194 104,186 M128,182 Q140,194 152,186" fill="none" stroke="#2B1A0C" stroke-width="4" stroke-linecap="round"/>
+<g fill="#2B1A0C"><circle cx="98" cy="168" r="2.5"/><circle cx="106" cy="178" r="2.5"/><circle cx="96" cy="182" r="2.5"/><circle cx="158" cy="168" r="2.5"/><circle cx="150" cy="178" r="2.5"/><circle cx="160" cy="182" r="2.5"/></g>
+<circle cx="128" cy="128" r="128" fill="url(#jaguarete-vg)"/>
+</svg>

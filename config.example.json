@@ -1,0 +1,47 @@
+{
+  "_comment": "Configuración de Jaha.io. Copiá este archivo como config.json (el servidor lo hace solo) y cambiá lo que quieras. Reiniciá el servidor para aplicar cambios.",
+  "title": "Jaha.io",
+  "port": 3000,
+  "_comment_admins": "Usuarios (nombre de cuenta) con permisos de admin en el chat: /bots, /br start, /kick, /mute, /anuncio, /perf",
+  "admins": [],
+  "tunnel": {
+    "_comment": "protocol: auto | http2 (usá http2 si el túnel no conecta)",
+    "protocol": "auto"
+  },
+  "chat": {
+    "enabled": true,
+    "badWords": []
+  },
+  "progression": {
+    "startingCoins": 5000,
+    "coinsPerXp": 10,
+    "minLifeSeconds": 15
+  },
+  "ffa": {
+    "enabled": true,
+    "world": 6000,
+    "bots": 12,
+    "food": 1000,
+    "viruses": 20,
+    "startMass": 20,
+    "maxPlayers": 60
+  },
+  "br": {
+    "enabled": true,
+    "world": 4500,
+    "bots": 12,
+    "food": 700,
+    "viruses": 12,
+    "startMass": 30,
+    "minHumans": 1,
+    "maxPlayers": 40,
+    "lobbySeconds": 20,
+    "countdownSeconds": 5,
+    "maxRoundSeconds": 420
+  },
+  "bots": {
+    "showTag": true,
+    "_comment": "Mezcla de personalidades: tranqui (fácil), normal, capo (difícil)",
+    "mix": { "tranqui": 0.5, "normal": 0.35, "capo": 0.15 }
+  }
+}

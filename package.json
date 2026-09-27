@@ -1,0 +1,27 @@
+{
+  "name": "jaha-io",
+  "version": "1.0.0",
+  "description": "Jaha.io — juego multijugador tipo agar.io con temática paraguaya. Clásico y Batalla real, bots, cuentas, skins, logros.",
+  "private": true,
+  "type": "module",
+  "main": "server/index.js",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server/index.js",
+    "start:tunnel": "node --disable-warning=ExperimentalWarning server/index.js --tunnel",
+    "dev": "node --disable-warning=ExperimentalWarning --watch server/index.js",
+    "test": "node --disable-warning=ExperimentalWarning --test --test-reporter=spec \"tests/unit/**/*.test.js\" \"tests/integration/**/*.test.js\"",
+    "test:e2e": "node --disable-warning=ExperimentalWarning tests/e2e/smoke.mjs",
+    "admin": "node --disable-warning=ExperimentalWarning server/tools/admin-cli.js",
+    "backup": "node --disable-warning=ExperimentalWarning server/tools/admin-cli.js backup",
+    "loadtest": "node scripts/dev/loadtest.mjs"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.2.1",
+    "qrcode": "^1.5.4",
+    "ws": "^8.22.0"
+  }
+}

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+<defs><radialGradient id="mate-b" ><stop offset="0" stop-color="#E0582E"/><stop offset="1" stop-color="#6A1208"/></radialGradient><radialGradient id="mate-gd" cx="0.4" cy="0.3" r="0.8"><stop offset="0" stop-color="#E6AE6C"/><stop offset="0.65" stop-color="#A86A34"/><stop offset="1" stop-color="#6A3C1C"/></radialGradient><linearGradient id="mate-mt" ><stop offset="0" stop-color="#F4F7FA"/><stop offset="0.5" stop-color="#A9B3BE"/><stop offset="1" stop-color="#E6EBF0"/></linearGradient><radialGradient id="mate-vg" cx="128" cy="128" r="128" gradientUnits="userSpaceOnUse"><stop offset="0.74" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.3"/></radialGradient></defs>
+<rect width="256" height="256" fill="url(#mate-b)"/>
+<g fill="none" stroke="#FFF1E0" stroke-width="9" stroke-linecap="round" opacity=".8">
+<path d="M90,78 C74,62 102,52 86,32"/><path d="M116,72 C100,56 128,46 112,24"/></g>
+<path d="M74,102 C36,128 40,214 128,226 C216,214 220,128 182,102 Z" fill="url(#mate-gd)" stroke="#3E2210" stroke-width="5"/>
+<path d="M56,150 L70,140 L84,150 L98,140 L112,150 L126,140 L140,150 L154,140 L168,150 L182,140 L198,150" fill="none" stroke="#5A3214" stroke-width="5" stroke-linejoin="round"/>
+<path d="M50,168 Q128,188 206,168" fill="none" stroke="#5A3214" stroke-width="4"/>
+<path d="M86,214 Q128,232 170,214 L166,226 Q128,242 90,226 Z" fill="url(#mate-mt)" stroke="#3E4650" stroke-width="4" stroke-linejoin="round"/>
+<ellipse cx="128" cy="102" rx="56" ry="15" fill="#5E8F2E" stroke="#3E4650" stroke-width="12"/>
+<ellipse cx="128" cy="102" rx="56" ry="15" fill="none" stroke="url(#mate-mt)" stroke-width="7"/>
+<path d="M80,104 Q102,72 130,78 Q160,72 176,104 Z" fill="#7CB342" stroke="#4E7A22" stroke-width="3"/>
+<g fill="#4E7A22"><circle cx="112" cy="92" r="3"/><circle cx="140" cy="88" r="3"/><circle cx="154" cy="98" r="2.5"/><circle cx="98" cy="100" r="2.5"/></g>
+<path d="M72,103 A56,15 0 0,0 184,103" fill="none" stroke="#3E4650" stroke-width="12"/>
+<path d="M72,103 A56,15 0 0,0 184,103" fill="none" stroke="url(#mate-mt)" stroke-width="7"/>
+<path d="M136,94 L182,44 L192,40" fill="none" stroke="#3E4650" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M136,94 L182,44 L192,40" fill="none" stroke="#DCE2E8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="128" cy="128" r="128" fill="url(#mate-vg)"/>
+</svg>

@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0038a8">
+  <meta name="description" content="Jaha.io — comé chipitas, crecé y dominá el mapa. Multijugador con temática paraguaya.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Jaha.io">
+  <title>Jaha.io</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="/css/style.css">
+  <script type="module" src="/js/main.js"></script>
+</head>
+<body class="theme-dark">
+  <canvas id="game" aria-label="Juego"></canvas>
+
+  <!-- ===================== HUD ===================== -->
+  <div id="hud" hidden>
+    <button id="btn-pause" class="hud-btn" title="Menú (Esc)" aria-label="Menú">☰</button>
+    <div id="score" class="hud-panel"><span id="score-mass">0</span><small id="score-rank"></small></div>
+    <div id="leaderboard" class="hud-panel">
+      <div class="lb-title">Ranking</div>
+      <ol id="lb-list"></ol>
+      <div id="lb-me"></div>
+    </div>
+    <div id="br-banner" class="hud-panel" hidden></div>
+    <div id="killfeed"></div>
+    <canvas id="minimap" width="180" height="180"></canvas>
+    <div id="fps" hidden></div>
+    <div id="chat">
+      <div id="chat-log" aria-live="polite"></div>
+      <form id="chat-form" autocomplete="off">
+        <input id="chat-input" maxlength="120" placeholder="Escribí algo… (Enter)" enterkeyhint="send">
+      </form>
+    </div>
+    <button id="btn-chat" class="hud-btn" title="Chat" aria-label="Chat">💬</button>
+    <div id="spectate-bar" class="hud-panel" hidden>
+      <span id="spectate-name">Mirando…</span>
+      <button id="btn-spec-next" class="btn small">Siguiente ▶</button>
+      <button id="btn-spec-play" class="btn small primary">Jugar</button>
+    </div>
+    <div id="center-text"></div>
+    <!-- Controles táctiles -->
+    <div id="touch-controls" hidden>
+      <div id="joy-zone"></div>
+      <div id="joystick"><div id="joy-knob"></div></div>
+      <div id="touch-buttons">
+        <button id="btn-eject" class="touch-btn" aria-label="Expulsar masa"><span>Expulsar</span></button>
+        <button id="btn-split" class="touch-btn big" aria-label="Dividir"><span>Dividir</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MENÚ ===================== -->
+  <div id="menu" class="overlay">
+    <div class="menu-wrap">
+      <header class="menu-header">
+        <div class="logo" aria-label="Jaha.io">
+          <span class="logo-star">★</span>
+          <span class="logo-text"><b class="r">Ja</b><b class="w">ha</b><b class="b">.io</b></span>
+        </div>
+        <p class="tagline" id="tagline">¡Mba'éichapa! Comé chipitas, crecé y dominá el mapa.</p>
+      </header>
+
+      <section class="card play-card">
+        <div id="account-chip" class="account-chip"></div>
+        <div class="row name-row">
+          <button id="skin-preview" class="skin-preview" title="Elegir skin" aria-label="Elegir skin"></button>
+          <input id="name-input" maxlength="24" placeholder="Tu nombre" autocomplete="nickname" spellcheck="false">
+        </div>
+        <div class="modes" role="radiogroup" aria-label="Modo de juego">
+          <button class="mode" data-mode="ffa" role="radio" aria-checked="true">
+            <span class="mode-icon">🥯</span>
+            <span class="mode-name">Clásico</span>
+            <span class="mode-info" id="mode-ffa-info">—</span>
+          </button>
+          <button class="mode" data-mode="br" role="radio" aria-checked="false">
+            <span class="mode-icon">🌵</span>
+            <span class="mode-name">Batalla real</span>
+            <span class="mode-info" id="mode-br-info">—</span>
+          </button>
+        </div>
+        <button id="btn-play" class="btn primary huge" disabled>Conectando…</button>
+        <p id="menu-error" class="error" hidden></p>
+      </section>
+
+      <nav class="menu-nav">
+        <button class="nav-btn" data-panel="shop"><span>🛍️</span>Tienda</button>
+        <button class="nav-btn" data-panel="achievements"><span>🏅</span>Logros</button>
+        <button class="nav-btn" data-panel="ranking"><span>🏆</span>Ranking</button>
+        <button class="nav-btn" data-panel="settings"><span>⚙️</span>Ajustes</button>
+        <button class="nav-btn" data-panel="invite"><span>📲</span>Invitar</button>
+        <button class="nav-btn" data-panel="help"><span>❓</span>Cómo jugar</button>
+      </nav>
+      <footer class="menu-footer">
+        <span id="conn-status" class="conn-status">●</span>
+        <span>Hecho con ❤️ en Paraguay · <span id="server-title">Jaha.io</span></span>
+      </footer>
+    </div>
+  </div>
+
+  <!-- ===================== PANTALLAS ===================== -->
+  <div id="death" class="overlay dim" hidden>
+    <div class="card death-card">
+      <h2 id="death-title">¡Te comieron!</h2>
+      <p id="death-sub" class="muted"></p>
+      <div id="death-stats" class="stat-grid"></div>
+      <div id="death-rewards" class="rewards"></div>
+      <div class="row buttons">
+        <button id="btn-respawn" class="btn primary">¡De nuevo!</button>
+        <button id="btn-spectate" class="btn">Espectar</button>
+        <button id="btn-to-menu" class="btn ghost">Menú</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="br-lobby" class="overlay dim" hidden>
+    <div class="card lobby-card">
+      <h2>🌵 Batalla real</h2>
+      <p id="lobby-text" class="big-text">Esperando jugadores…</p>
+      <p id="lobby-sub" class="muted"></p>
+      <div class="row buttons">
+        <button id="btn-lobby-leave" class="btn ghost">Salir</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="podium" class="overlay dim" hidden>
+    <div class="card podium-card">
+      <h2>🏆 ¡Terminó la ronda!</h2>
+      <div id="podium-places" class="podium-places"></div>
+      <p id="podium-sub" class="muted"></p>
+    </div>
+  </div>
+
+  <div id="pause" class="overlay dim" hidden>
+    <div class="card pause-card">
+      <h2>Pausa</h2>
+      <p class="muted">El juego sigue corriendo mientras tanto 👀</p>
+      <div class="col buttons">
+        <button id="btn-resume" class="btn primary">Seguir jugando</button>
+        <button id="btn-pause-settings" class="btn">Ajustes</button>
+        <button id="btn-quit" class="btn ghost">Salir al menú</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PANELES ===================== -->
+  <div id="modal" class="overlay dim" hidden>
+    <div class="card modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <header class="modal-header">
+        <h2 id="modal-title"></h2>
+        <button id="modal-close" class="icon-btn" aria-label="Cerrar">✕</button>
+      </header>
+      <div id="modal-body" class="modal-body"></div>
+    </div>
+  </div>
+
+  <div id="toasts" aria-live="polite"></div>
+  <div id="rotate-hint" hidden>
+    <div>📱↻</div>
+    <p>Girá el celular para jugar mejor</p>
+    <button id="btn-rotate-ok" class="btn small">Seguir así</button>
+  </div>
+  <noscript><p style="padding:2em;color:#fff">Jaha.io necesita JavaScript.</p></noscript>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+<defs><radialGradient id="arpa-b" ><stop offset="0" stop-color="#2F63C4"/><stop offset="1" stop-color="#0B2156"/></radialGradient><linearGradient id="arpa-wd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E3A058"/><stop offset="1" stop-color="#8E5020"/></linearGradient><radialGradient id="arpa-vg" cx="128" cy="128" r="128" gradientUnits="userSpaceOnUse"><stop offset="0.74" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.3"/></radialGradient></defs>
+<rect width="256" height="256" fill="url(#arpa-b)"/>
+<g fill="#FFF3B0"><circle cx="198" cy="190" r="3"/><circle cx="214" cy="150" r="2.5"/><circle cx="178" cy="212" r="2.5"/><circle cx="222" cy="186" r="2"/></g>
+<g transform="translate(130 130) scale(.92) translate(-128 -144)">
+<path d="M85,71.5L85,196.8M92,71.2L92,188.7M106,72.4L106,172.3M113,73.6L113,164.2M120,75L120,156M134,78.1L134,139.7M141,79.5L141,131.5M148,80.9L148,123.3M162,82.9L162,107M169,83.6L169,98.8M176,83.9L176,90.7" stroke="#F7EBD0" stroke-width="3.5"/>
+<path d="M99,71.6L99,180.5M127,76.5L127,147.8M155,82L155,115.2" stroke="#FF5A4E" stroke-width="3.5"/>
+<polygon points="58,226 190,70 214,82 106,238" fill="url(#arpa-wd)" stroke="#3F2210" stroke-width="5" stroke-linejoin="round"/>
+<g fill="#2A1405"><circle cx="112" cy="196" r="7"/><circle cx="146" cy="156" r="6"/><circle cx="176" cy="120" r="5"/></g>
+<rect x="54" y="60" width="22" height="172" rx="6" fill="#8A5226" stroke="#3F2210" stroke-width="5"/>
+<g fill="#D9A45A"><rect x="52" y="100" width="26" height="8" rx="3"/><rect x="52" y="200" width="26" height="8" rx="3"/></g>
+<path d="M56,62 C98,36 152,86 212,64 L208,82 C150,98 100,58 66,80 Z" fill="#A8642C" stroke="#3F2210" stroke-width="5" stroke-linejoin="round"/>
+<circle cx="56" cy="56" r="13" fill="#A8642C" stroke="#3F2210" stroke-width="5"/>
+<circle cx="56" cy="56" r="4" fill="#3F2210"/></g>
+<circle cx="128" cy="128" r="128" fill="url(#arpa-vg)"/>
+</svg>
